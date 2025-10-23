@@ -8,31 +8,58 @@
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/ext_power.h>
 #include <dt-bindings/zmk/keys.h>
+#include <zmk-helpers/helper.h>
+#include <zmk-helpers/key-labels/60.h>
+#include <behaviors/num_word.dtsi>
+
+#define KEYS_L LN0 LN1 LN2 LN3 LN4 LN5 LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5
+#define KEYS_R RN0 RN1 RN2 RN3 RN4 RN5 RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5
+#define THUMBS LH5 LH4 LH3 LH2 LH1 LH0 RH0 RH1 RH2 RH3 RH4 RH5
 
 / {
     behaviors {
-        hml: homerow_mods_left {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+        // Home row mods - left hand
+        ZMK_HOLD_TAP(hml,
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <6 7 8 9 10 11 18 19 20 21 22 23 30 31 32 33 34 35 36 37 38 39 40 41>;
+            hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
-        };
+        )
 
-        hmr: homerow_mods_right {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+        // Home row mods - right hand
+        ZMK_HOLD_TAP(hmr,
             flavor = "balanced";
             tapping-term-ms = <280>;
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-            hold-trigger-key-positions = <0 1 2 3 4 5 12 13 14 15 16 17 24 25 26 27 28 29 36 37 38 39 40 41>;
+            hold-trigger-key-positions = <KEYS_L THUMBS>;
             hold-trigger-on-release;
+        )
+
+        // Tap-dance for numword: tap=numword, double-tap=sticky layer
+        ZMK_TAP_DANCE(num_dance,
+            tapping-term-ms = <200>;
+            bindings = <&num_word 3>, <&sl 3>;
+        )
+
+        // Smart-num: hold=momentary NUM, tap=numword
+        ZMK_HOLD_TAP(smart_num,
+            flavor = "balanced";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <175>;
+            bindings = <&mo>, <&num_dance>;
+        )
+    };
+
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+        sys_layer_access {
+            if-layers = <1 2>;  // LOWER + RAISE
+            then-layer = <5>;   // SYS layer
         };
     };
 
@@ -53,7 +80,7 @@
 &kp ESC    &kp Q   &kp W     &kp E     &kp R      &kp T                                    &kp Y   &kp U      &kp I      &kp O     &kp P     &kp BSPC
 &kp TAB    &hml LGUI A   &hml LALT S     &hml LCTRL D     &hml LSHFT F      &kp G                                    &kp H   &hmr RSHFT J      &hmr RCTRL K      &hmr LALT L     &hmr RGUI SEMI  &kp SQT
 &kp LSHFT  &kp Z   &kp X     &kp C     &kp V      &kp B   &kp C_MUTE    &kp C_MUTE  &kp N   &kp M      &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
-                   &kp LGUI  &kp LALT  &kp LCTRL  &mo 1   &kp RET       &kp SPACE          &mo 2   &kp RCTRL  &kp RALT   &kp RGUI
+                   &kp LGUI  &kp LALT  &kp LCTRL  &mo 1   &kp RET       &kp SPACE          &mo 2   &smart_num 3 0  &mo 4   &kp RGUI
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -94,6 +121,66 @@
 &trans      &kp LALT      &kp LCTRL     &kp LSHFT     &trans        &kp CLCK                        &kp LEFT   &kp DOWN  &kp UP  &kp RIGHT  &kp DEL  &kp BSPC
 &trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &trans        &trans    &trans  &trans     &trans    &trans  &trans     &trans   &trans
                           &trans        &trans        &trans        &trans        &trans    &trans  &trans     &trans    &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        num_layer {
+            display-name = "NUM";
+            // ------------------------------------------------------------------------------------------------------------
+            // |   =   |  +  |  -  |  *   |  /   |      |                |  /   |   7  |   8  |   9  |   -   |       |
+            // |       |     |     |      |      |      |                |      |   4  |   5  |   6  |   +   |       |
+            // |       | GUI | ALT | CTRL | SHFT |      |                |      |   1  |   2  |   3  |   .   |       |
+            // |       |     |  {  |  }   |      |      |      |  |      |      |   0  |   0  |   0  |   =   |       |
+            //               |     |      |      |      |      |  |      |      |      |      |      |
+
+            bindings = <
+&kp EQUAL  &kp PLUS  &kp MINUS  &kp STAR   &kp FSLH   &trans                       &kp FSLH  &kp N7  &kp N8  &kp N9  &kp MINUS  &trans
+&trans     &trans    &trans     &trans     &trans     &trans                       &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
+&trans     &kp LGUI  &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &trans    &kp N1  &kp N2  &kp N3  &kp DOT    &trans
+&trans     &trans    &kp LBRC   &kp RBRC   &trans     &trans  &trans    &trans     &trans    &kp N0  &kp N0  &kp N0  &kp EQUAL  &trans
+                     &trans     &trans     &trans     &trans  &trans    &trans     &trans    &trans  &trans  &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        fn_layer {
+            display-name = "FN";
+            // ------------------------------------------------------------------------------------------------------------
+            // | F12  | F7  | F8  |  F9  |      |      |                | MUTE |VOL-  | VOL+ | PREV | NEXT  |       |
+            // | F11  | F4  | F5  |  F6  |      |      |                |      |      |      |      |       |       |
+            // | F10  | F1  | F2  |  F3  |      |      |                |      | LEFT | DOWN |  UP  | RIGHT |       |
+            // |      |     |     |      |      |      |      |  |      |      |      |      |      |       |       |
+            //              |     |      |      |      |      |  | PLAY | PLAY |      |      |      |
+
+            bindings = <
+&kp F12  &kp F7  &kp F8  &kp F9  &trans  &trans                    &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &trans
+&kp F11  &kp F4  &kp F5  &kp F6  &trans  &trans                    &trans      &trans        &trans        &trans      &trans      &trans
+&kp F10  &kp F1  &kp F2  &kp F3  &trans  &trans                    &trans      &kp LEFT      &kp DOWN      &kp UP      &kp RIGHT   &trans
+&trans   &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans      &trans        &trans        &trans      &trans      &trans
+                 &trans  &trans  &trans  &trans  &trans    &kp C_PP  &kp C_PP  &trans        &trans        &trans
+            >;
+
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        sys_layer {
+            display-name = "SYS";
+            // ------------------------------------------------------------------------------------------------------------
+            // |BTCLR| BT0  | BT1  |  BT2  |  BT3  |  BT4 |                |      |      |      |      |       |       |
+            // |     |      |      |       |       |      |                |      |      |      |      |       |       |
+            // |     |      |      |       |       |      |                |      |      |      |      |       |       |
+            // |BOOT |      |      |       |       |      |      |  |      |      |      |      |      |       | BOOT  |
+            //              |      |       |       |      |      |  |      |      |      |      |      |
+
+            bindings = <
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans        &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans  &trans  &trans
+&trans       &trans        &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans  &trans  &trans
+&bootloader  &trans        &trans        &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
+                           &trans        &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
