@@ -1,5 +1,10 @@
-# zmk
+# ZMK Build Artifacts (downloaded by west/make)
 zmk/
+zephyr/
+modules/
+.west/
+zmk-*/
+bootloader/
 
 # sketchybar
 sketchybar/dotfiles/
