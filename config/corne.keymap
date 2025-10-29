@@ -1,6 +1,7 @@
 /*
+ * Unified Miryoku-inspired keymap for Corne keyboard
+ * Uses Miryoku layer structure with urob's num layer
  * Copyright (c) 2020 The ZMK Contributors
- *
  * SPDX-License-Identifier: MIT
  */
 
@@ -21,6 +22,16 @@
     chain-length = <27>;
 };
 
+// Layer definitions
+#define BASE 0
+#define NAV 1
+#define MOUSE 2
+#define MEDIA 3
+#define NUM 4
+#define SYM 5
+#define FUN 6
+#define SYS 7
+
 // Key position groups for positional hold-tap
 #define KEYS_L LT0 LT1 LT2 LT3 LT4 LT5 LM0 LM1 LM2 LM3 LM4 LM5 LB0 LB1 LB2 LB3 LB4 LB5  // Left hand
 #define KEYS_R RT0 RT1 RT2 RT3 RT4 RT5 RM0 RM1 RM2 RM3 RM4 RM5 RB0 RB1 RB2 RB3 RB4 RB5  // Right hand
@@ -28,7 +39,7 @@
 
 / {
     behaviors {
-        // Home row mods - left hand
+        // Home row mods - left hand (urob's timing)
         hml: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -37,12 +48,11 @@
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-
             hold-trigger-key-positions = <KEYS_R THUMBS>;
             hold-trigger-on-release;
         };
 
-        // Home row mods - right hand
+        // Home row mods - right hand (urob's timing)
         hmr: homerow_mods_right {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
@@ -51,7 +61,6 @@
             quick-tap-ms = <175>;
             require-prior-idle-ms = <150>;
             bindings = <&kp>, <&kp>;
-
             hold-trigger-key-positions = <KEYS_L THUMBS>;
             hold-trigger-on-release;
         };
@@ -61,7 +70,7 @@
             compatible = "zmk,behavior-tap-dance";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&num_word 3>, <&sl 3>;
+            bindings = <&num_word NUM>, <&sl NUM>;
         };
 
         // Smart-num: hold=momentary NUM, tap=numword
@@ -79,110 +88,153 @@
         compatible = "zmk,conditional-layers";
 
         sys_layer_access {
-            if-layers = <1 2>;  // LOWER + RAISE
-            then-layer = <5>;   // SYS layer
+            if-layers = <NAV MOUSE>;
+            then-layer = <SYS>;
         };
     };
 
     keymap {
         compatible = "zmk,keymap";
 
-        default_layer {
-            display-name = "BAS";
+        // BASE LAYER - QWERTY with urob's home row mods
+        base_layer {
+            display-name = "BASE";
             // -----------------------------------------------------------------------------------------
-            // |  ESC |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-            // |  TAB |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-            // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | SHFT |
-            //                    | CTRL| LWR | ENTER|  | SPC | RSE  | NUM |
+            // |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  |
+            // | GUI | ALT |CTRL |SHFT |  G  |   |  H  |SHFT  |CTRL | ALT | GUI |
+            // |  A  |  S  |  D  |  F  |     |   |     |  J   |  K  |  L  |  '  |
+            // |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  |
+            //             |MEDI |NAV  |MOUS |   | SYM | NUM  | FUN |
+            //             |ESC  |SPC  |TAB  |   | RET | BSP  | DEL |
 
             bindings = <
-&kp ESC    &kp Q         &kp W        &kp E         &kp R         &kp T           &kp Y      &kp U           &kp I         &kp O        &kp P            &kp BSPC
-&kp TAB    &hml LGUI A   &hml LALT S  &hml LCTRL D  &hml LSHFT F  &kp G           &kp H      &hmr RSHFT J    &hmr RCTRL K  &hmr RALT L  &hmr RGUI SEMI   &kp SQT
-&kp LSHFT  &kp Z         &kp X        &kp C         &kp V         &kp B           &kp N      &kp M           &kp COMMA     &kp DOT      &kp FSLH         &kp RSHFT
-                                      &kp LCTRL     &mo 1         &mt LGUI RET    &kp SPACE  &lt 2 BACKSPACE &smart_num 3 0
+&kp Q          &kp W        &kp E         &kp R         &kp T             &kp Y       &kp U           &kp I         &kp O        &kp P
+&hml LGUI A    &hml LALT S  &hml LCTRL D  &hml LSHFT F  &kp G             &kp H       &hmr RSHFT J    &hmr RCTRL K  &hmr RALT L  &hmr RGUI SQT
+&kp Z          &kp X        &kp C         &kp V         &kp B             &kp N       &kp M           &kp COMMA     &kp DOT      &kp FSLH
+                            &lt MEDIA ESC &lt NAV SPACE &lt MOUSE TAB     &lt SYM RET &lt NUM BSPC    &lt FUN DEL
             >;
         };
 
-        lower_layer {
-            display-name = "LOW";
+        // NAV LAYER - Navigation (right hand IJKL navigation)
+        nav_layer {
+            display-name = "NAV";
             // -----------------------------------------------------------------------------------------
-            // |  `   |  F1 |  F2 |  F3  |  F4  |  F5  |   |  F6  |  F7   |  F8   |  F9  |  F10  |  F11  |
-            // |RAISE |  1  |  2  |  3   |  4   |  5   |   |  6   |  7    |  8    |  9   |   0   |  F12  |
-            // |      |  !  |  @  |  #   |  $   |  %   |   |  ^   |  &    |  *    |  (   |   )   |   |   |
-            //                    |      |      |      |   |      |       |       |
+            // |BOOT |     |     |BASE |     |   | INS |HOME |PG_DN|PG_UP| END |
+            // | GUI | ALT |CTRL |SHFT |     |   |CAPS |LEFT |DOWN | UP  |RIGHT|
+            // |     |RALT | NUM | NAV |     |   |REDO |PASTE|COPY |CUT  |UNDO |
+            //             |     |     |     |   |     |     |     |
 
             bindings = <
-&kp GRAVE  &kp F1     &kp F2     &kp F3       &kp F4    &kp F5       &kp F6     &kp F7    &kp F8           &kp F9     &kp F10   &kp F11
-&mo 2      &kp N1     &kp N2     &kp N3       &kp N4    &kp N5       &kp N6     &kp N7    &kp N8           &kp N9     &kp N0    &kp F12
-&trans     &kp EXCL   &kp AT     &kp HASH     &kp DLLR  &kp PRCNT    &kp CARET  &kp AMPS  &kp KP_MULTIPLY  &kp LPAR   &kp RPAR  &kp PIPE
-                                 &trans       &trans    &trans       &trans     &trans    &trans
+&bootloader &none     &none      &to BASE   &none         &kp INS    &kp HOME     &kp PG_DN   &kp PG_UP &kp END
+&kp LGUI    &kp LALT  &kp LCTRL  &kp LSHFT  &none         &kp CAPS   &kp LEFT     &kp DOWN    &kp UP    &kp RIGHT
+&none       &kp RALT  &mo NUM    &mo NAV    &none         &kp K_REDO &kp K_PASTE  &kp K_COPY  &kp K_CUT &kp K_UNDO
+                      &trans     &trans     &trans        &trans     &none        &none
             >;
         };
 
-        raise_layer {
-            display-name = "RAI";
+        // MOUSE LAYER - Mouse keys
+        mouse_layer {
+            display-name = "MOUS";
             // -----------------------------------------------------------------------------------------
-            // |BTCLR | BT1  | BT2  |  BT3  |  BT4  |  BT5 |   |      |      |       |      |       |       |
-            // |      | INS  | PSCR | GUI   |       |      |   |      |  <-  |   v   |  ^   |  ->   | BKSPC |
-            // |      | UNDO | CUT  | COPY  | PASTE | CAPS |   |      |      |       |      |  DEL  |       |
-            //                      |       |       |      |   |      |      |       |
+            // |BOOT |     |     |BASE |     |   |     |     |     |     |     |
+            // | GUI | ALT |CTRL |SHFT |     |   |     |SHFT |CTRL | ALT | GUI |
+            // |     |RALT | SYM |MOUS |     |   |REDO |PASTE|COPY |CUT  |UNDO |
+            //             |     |     |     |   |     |     |     |
 
             bindings = <
-&bt BT_CLR  &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans              &trans     &trans               &trans   &trans
-&trans      &kp INS       &kp PSCRN     &kp K_CMENU   &trans        &trans          &trans  &kp LA(LEFT_ARROW)  &kp UP     &kp RA(RIGHT_ARROW)  &kp N0   &kp BSPC
-&trans      &kp K_UNDO    &kp K_CUT     &kp K_COPY    &kp K_PASTE   &kp CLCK        &trans  &kp LEFT_ARROW      &kp DOWN   &kp RIGHT            &kp DEL  &trans
-                                        &trans        &trans        &trans          &trans  &trans              &trans
+&bootloader &none     &none      &to BASE   &none         &none      &none       &none       &none     &none
+&kp LGUI    &kp LALT  &kp LCTRL  &kp LSHFT  &none         &none      &kp RSHFT   &kp RCTRL   &kp RALT  &kp RGUI
+&none       &kp RALT  &mo SYM    &mo MOUSE  &none         &kp K_REDO &kp K_PASTE &kp K_COPY  &kp K_CUT &kp K_UNDO
+                      &trans     &trans     &trans        &none      &none       &trans
             >;
         };
 
+        // MEDIA LAYER - Media controls and system
+        media_layer {
+            display-name = "MEDI";
+            // -----------------------------------------------------------------------------------------
+            // |BOOT |     |     |BASE |     |   |RGB  |RGB  |RGB  |RGB  |RGB  |
+            // | GUI | ALT |CTRL |SHFT |     |   | TOG | HUI | SAI | BRI | EFF |
+            // |     |RALT | FUN |MEDI |     |   | OUT | BT0 | BT1 | BT2 | BT3 |
+            //             |     |     |     |   |MUTE |VOL- |VOL+ |
+
+            bindings = <
+&bootloader &none     &none      &to BASE   &none         &rgb_ug RGB_TOG &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_EFF
+&kp LGUI    &kp LALT  &kp LCTRL  &kp LSHFT  &none         &ext_power EP_TOG &kp C_PREV    &kp C_NEXT      &kp C_PP        &kp C_STOP
+&none       &kp RALT  &mo FUN    &mo MEDIA  &none         &out OUT_TOG    &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3
+                      &trans     &trans     &trans        &kp C_MUTE      &kp C_VOL_DN    &kp C_VOL_UP
+            >;
+        };
+
+        // NUM LAYER - Number pad (urob's layout)
         num_layer {
             display-name = "NUM";
             // -----------------------------------------------------------------------------------------
-            // |   =   |  +  |  -  |  *   |  /   |      |   |  /   |   7  |   8  |   9  |   -   |       |
-            // |       |     |     |      |      |      |   |      |   4  |   5  |   6  |   +   |       |
-            // |       | GUI | ALT | CTRL | SHFT |      |   |      |   1  |   2  |   3  |   .   |       |
-            //                     |      |      |      |   |      |   0  |      |
+            // |  =  |  +  |  -  |  *  |  /  |   |  /  |  7  |  8  |  9  |  -  |
+            // | GUI | ALT |CTRL |SHFT |     |   |     |  4  |  5  |  6  |  +  |
+            // |     |     |  {  |  }  |     |   |  0  |  1  |  2  |  3  |  .  |
+            //             |     |     |     |   |     |  0  |     |
 
             bindings = <
-&kp EQUAL  &kp PLUS  &kp MINUS  &kp STAR   &kp FSLH   &trans    &kp FSLH  &kp N7        &kp N8        &kp N9        &kp MINUS  &trans
-&trans     &kp LGUI  &kp LALT   &kp LCTRL  &kp LSHFT  &trans    &trans    &kp N4        &kp N5        &kp N6        &kp PLUS   &trans
-&trans     &trans    &trans     &trans     &trans     &trans    &kp N0    &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp DOT    &trans
-                                &trans     &trans     &trans    &trans    &kp N0        &trans
+&kp EQUAL  &kp PLUS  &kp MINUS  &kp STAR   &kp FSLH     &kp FSLH  &kp N7  &kp N8  &kp N9  &kp MINUS
+&kp LGUI   &kp LALT  &kp LCTRL  &kp LSHFT  &none        &none     &kp N4  &kp N5  &kp N6  &kp PLUS
+&none      &none     &kp LBRC   &kp RBRC   &none        &kp N0    &kp N1  &kp N2  &kp N3  &kp DOT
+                     &trans     &trans     &trans       &trans    &kp N0  &trans
             >;
         };
 
-        fn_layer {
-            display-name = "FN";
+        // SYM LAYER - Symbols (Miryoku flipped: right hand symbols)
+        sym_layer {
+            display-name = "SYM";
             // -----------------------------------------------------------------------------------------
-            // | F12  | F7  | F8  |  F9  |      |      |   | MUTE |VOL-  | VOL+ | PREV | NEXT  |       |
-            // | F11  | F4  | F5  |  F6  |      |      |   |      |      |      |      |       |       |
-            // | F10  | F1  | F2  |  F3  |      |      |   |      | LEFT | DOWN |  UP  | RIGHT |       |
-            //                    |      |      |      |   | PLAY |      |      |
+            // |BOOT |     |     |BASE |     |   |  {  |  &  |  *  |  (  |  }  |
+            // | GUI | ALT |CTRL |SHFT |     |   |  +  |  $  |  %  |  ^  |  :  |
+            // |     |RALT | SYM |MOUS |     |   |  |  |  !  |  @  |  #  |  ~  |
+            //             |     |     |     |   |  _  |  (  |  )  |
 
             bindings = <
-&kp F12  &kp F7  &kp F8  &kp F9  &trans  &trans    &kp C_MUTE  &kp C_VOL_DN  &kp C_VOL_UP  &kp C_PREV  &kp C_NEXT  &trans
-&kp F11  &kp F4  &kp F5  &kp F6  &trans  &trans    &trans      &trans        &trans        &trans      &trans      &trans
-&kp F10  &kp F1  &kp F2  &kp F3  &trans  &trans    &trans      &kp LEFT      &kp DOWN      &kp UP      &kp RIGHT   &trans
-                         &trans  &trans  &trans    &kp C_PP    &trans        &trans
+&bootloader &none     &none      &to BASE   &none     &kp LBRC   &kp AMPS  &kp ASTRK  &kp LPAR   &kp RBRC
+&kp LGUI    &kp LALT  &kp LCTRL  &kp LSHFT  &none     &kp PLUS   &kp DLLR  &kp PRCNT  &kp CARET  &kp COLON
+&none       &kp RALT  &mo SYM    &mo MOUSE  &none     &kp PIPE   &kp EXCL  &kp AT     &kp HASH   &kp TILDE
+                      &trans     &none      &none     &kp UNDER  &kp LPAR  &kp RPAR
             >;
         };
 
+        // FUN LAYER - Function keys (Miryoku flipped: right hand function keys)
+        fun_layer {
+            display-name = "FUN";
+            // -----------------------------------------------------------------------------------------
+            // |BOOT |     |     |BASE |     |   |PSCR | F7  | F8  | F9  | F12 |
+            // | GUI | ALT |CTRL |SHFT |     |   |SLCK | F4  | F5  | F6  | F11 |
+            // |     |RALT | FUN |MEDI |     |   |PAUS | F1  | F2  | F3  | F10 |
+            //             |     |     |     |   | TAB | SPC | APP |
+
+            bindings = <
+&bootloader &none     &none      &to BASE   &none     &kp PSCRN        &kp F7     &kp F8     &kp F9     &kp F12
+&kp LGUI    &kp LALT  &kp LCTRL  &kp LSHFT  &none     &kp SLCK         &kp F4     &kp F5     &kp F6     &kp F11
+&none       &kp RALT  &mo FUN    &mo MEDIA  &none     &kp PAUSE_BREAK  &kp F1     &kp F2     &kp F3     &kp F10
+                      &trans     &none      &none     &kp TAB          &kp SPACE  &kp K_APP
+            >;
+        };
+
+        // SYS LAYER - System (conditional: NAV + MOUSE)
         sys_layer {
             display-name = "SYS";
             // -----------------------------------------------------------------------------------------
-            // |BTCLR| BT0  | BT1  |  BT2  |  BT3  |  BT4 |   |      |      |      |      |       |       |
-            // |     |      |      |       |       |      |   |      |      |      |      |       |       |
-            // |BOOT |      |      |       |       |      |   |      |      |      |      |       | BOOT  |
-            //                    |       |       |      |   |      |      |      |
+            // |BTCLR| BT0 | BT1 | BT2 | BT3 |   |     |     |     |     |     |
+            // |     |     |     |     |     |   |     |     |     |     |     |
+            // |BOOT |     |     |     | OUT |   |     |     |     |     |BOOT |
+            //             |     |     |     |   |     |     |     |
 
             bindings = <
-&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4    &trans  &trans  &trans  &trans  &trans  &trans
-&trans       &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &trans
-&bootloader  &trans        &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans  &bootloader
-                                         &trans        &trans        &trans          &trans  &trans  &trans
+&bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3    &trans  &trans  &trans  &trans  &trans
+&trans       &trans        &trans        &trans        &trans          &trans  &trans  &trans  &trans  &trans
+&bootloader  &trans        &trans        &trans        &out OUT_TOG    &trans  &trans  &trans  &trans  &bootloader
+                           &trans        &trans        &trans          &trans  &trans  &trans
             >;
         };
 
+        // Reserved layers for ZMK Studio
         extra_1 {
             status = "reserved";
         };
