@@ -107,7 +107,7 @@
 &kp ESC    &kp Q         &kp W        &kp E         &kp R         &kp T                                   &kp Y       &kp U            &kp I         &kp O        &kp P            &kp BSPC
 &kp TAB    &hml LGUI A   &hml LALT S  &hml LCTRL D  &hml LSHFT F  &kp G                                   &kp H       &hmr RSHFT J     &hmr RCTRL K  &hmr RALT L  &hmr RGUI SEMI   &kp SQT
 &kp LSHFT  &kp Z         &kp X        &kp C         &kp V         &kp B       &kp C_MUTE    &kp C_PP      &kp N       &kp M            &kp COMMA     &kp DOT      &kp FSLH         &kp RSHFT
-                         &kp LCTRL    &lt MEDIA ESC &lt NAV SPACE &lt MOUSE TAB             &lt SYM RET   &lt NUM BSPC &lt FUN DEL     &kp RALT      &none
+                         &none        &kp LCTRL    &lt MEDIA ESC &lt NAV SPACE &lt MOUSE TAB             &lt SYM RET   &lt NUM BSPC &lt FUN DEL     &kp RALT      &none
             >;
 
             sensor-bindings =
@@ -130,7 +130,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &kp INS    &kp HOME     &kp PG_DN   &kp PG_UP &kp END     &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &kp CAPS   &kp LEFT     &kp DOWN    &kp UP    &kp RIGHT   &trans
 &trans  &trans        &kp RALT   &mo NUM    &mo NAV    &trans  &trans      &trans   &kp K_REDO &kp K_PASTE  &kp K_COPY  &kp K_CUT &kp K_UNDO  &trans
-                      &trans     &trans     &trans     &trans              &trans   &none      &none        &trans
+                      &trans     &trans     &trans     &trans  &trans      &trans   &none      &none        &trans      &trans
             >;
 
             sensor-bindings =
@@ -153,7 +153,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &trans     &trans       &trans      &trans    &trans    &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &trans     &kp RSHFT    &kp RCTRL   &kp RALT  &kp RGUI  &trans
 &trans  &trans        &kp RALT   &mo SYM    &mo MOUSE  &trans  &trans      &trans   &kp K_REDO &kp K_PASTE  &kp K_COPY  &kp K_CUT &kp K_UNDO &trans
-                      &trans     &trans     &trans     &trans              &trans   &none      &none        &trans
+                      &trans     &trans     &trans     &trans  &trans      &trans   &none      &none        &trans      &trans
             >;
 
             sensor-bindings =
@@ -176,7 +176,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &rgb_ug RGB_TOG     &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_EFF &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &ext_power EP_TOG   &kp C_PREV      &kp C_NEXT      &kp C_PP        &kp C_STOP      &trans
 &trans  &trans        &kp RALT   &mo FUN    &mo MEDIA  &trans  &trans      &trans   &out OUT_TOG        &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &trans
-                      &trans     &trans     &trans     &trans              &trans   &kp C_MUTE          &kp C_VOL_DN    &kp C_VOL_UP    &none
+                      &trans     &trans     &trans     &trans     &trans   &trans   &kp C_MUTE          &kp C_VOL_DN    &kp C_VOL_UP    &none
             >;
 
             sensor-bindings =
@@ -199,7 +199,7 @@
 &kp EQUAL  &kp PLUS  &kp MINUS  &kp STAR   &kp FSLH   &trans                       &kp FSLH  &kp N7  &kp N8  &kp N9  &kp MINUS  &trans
 &kp EQUAL  &kp PLUS  &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHFT                    &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
 &trans     &trans    &trans     &kp LBRC   &kp RBRC   &trans     &trans    &trans  &kp N0    &kp N1  &kp N2  &kp N3  &kp DOT    &trans
-                     &trans     &trans     &trans     &trans               &trans  &trans    &kp N0  &trans  &none
+                     &trans     &trans     &trans     &trans     &trans    &trans  &trans    &kp N0  &trans  &none
             >;
 
             sensor-bindings =
@@ -222,7 +222,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &kp LBRC   &kp AMPS  &kp ASTRK &kp LPAR  &kp RBRC   &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &kp PLUS   &kp DLLR  &kp PRCNT &kp CARET &kp COLON  &trans
 &trans  &trans        &kp RALT   &mo SYM    &mo MOUSE  &trans  &trans      &trans   &kp PIPE   &kp EXCL  &kp AT    &kp HASH  &kp TILDE  &trans
-                      &trans     &trans     &none      &none                &trans   &kp UNDER  &kp LPAR  &kp RPAR  &none
+                      &trans     &trans     &none      &none      &trans    &trans   &kp UNDER  &kp LPAR  &kp RPAR  &none
             >;
 
             sensor-bindings =
@@ -245,7 +245,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &kp PSCRN        &kp F7     &kp F8     &kp F9     &kp F12  &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &kp SLCK         &kp F4     &kp F5     &kp F6     &kp F11  &trans
 &trans  &trans        &kp RALT   &mo FUN    &mo MEDIA  &trans  &trans      &trans   &kp PAUSE_BREAK  &kp F1     &kp F2     &kp F3     &kp F10  &trans
-                      &trans     &trans     &none      &none                &trans   &kp TAB          &kp SPACE  &kp K_APP  &none
+                      &trans     &trans     &none      &none      &trans    &trans   &kp TAB          &kp SPACE  &kp K_APP  &none
             >;
 
             sensor-bindings =
@@ -268,7 +268,7 @@
 &bt BT_CLR   &bt BT_SEL 0  &bt BT_SEL 1  &bt BT_SEL 2  &bt BT_SEL 3  &bt BT_SEL 4                    &trans  &trans  &trans  &trans  &trans  &trans
 &trans       &trans        &trans        &trans        &trans        &trans                          &trans  &trans  &trans  &trans  &trans  &trans
 &bootloader  &trans        &trans        &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans  &trans  &trans  &bootloader
-                           &trans        &trans        &trans        &trans                  &trans  &trans  &trans  &trans
+                           &trans        &trans        &trans        &trans        &trans    &trans  &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings =
