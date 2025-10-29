@@ -1,9 +1,62 @@
 layout: {zmk_keyboard: corne}
 layers:
-  BAS: [↹, Q, W, E, R, T, Y, U, I, O, P, '$$mdi:backspace-outline$$', '$$mdi:apple-keyboard-control$$', A, S, D, F, G, H, J, K, L, ;, '''', '$$mdi:apple-keyboard-shift$$',
-    Z, X, C, V, B, N, M, ',', ., /, Esc, '$$mdi:apple-keyboard-command$$', LOW, ␣, ⏎, RAI, '$$mdi:apple-keyboard-option$$']
-  LOW:
+  BAS:
+  - Esc
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - $$mdi:backspace-outline$$
   - ↹
+  - {t: A, h: '$$mdi:apple-keyboard-command$$'}
+  - {t: S, h: '$$mdi:apple-keyboard-option$$'}
+  - {t: D, h: '$$mdi:apple-keyboard-control$$'}
+  - {t: F, h: '$$mdi:apple-keyboard-shift$$'}
+  - G
+  - H
+  - {t: J, h: '$$mdi:apple-keyboard-shift$$'}
+  - {t: K, h: '$$mdi:apple-keyboard-control$$'}
+  - {t: L, h: '$$mdi:apple-keyboard-option$$'}
+  - {t: ;, h: '$$mdi:apple-keyboard-command$$'}
+  - ''''
+  - $$mdi:apple-keyboard-shift$$
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - $$mdi:apple-keyboard-shift$$
+  - $$mdi:apple-keyboard-control$$
+  - LOW
+  - {t: ⏎, h: '$$mdi:apple-keyboard-command$$'}
+  - ␣
+  - {t: BACKSPACE, h: RAI}
+  - {t: '&num_dance', h: NUM}
+  LOW:
+  - '`'
+  - F1
+  - F2
+  - F3
+  - F4
+  - F5
+  - F6
+  - F7
+  - F8
+  - F9
+  - F10
+  - F11
+  - RAI
   - '1'
   - '2'
   - '3'
@@ -14,39 +67,8 @@ layers:
   - '8'
   - '9'
   - '0'
-  - $$mdi:backspace-outline$$
-  - BT CLR
-  - BT 1
-  - BT 2
-  - BT 3
-  - BT 4
-  - BT 5
-  - ←
-  - ↓
-  - ↑
-  - →
+  - F12
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-shift$$
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-command$$
-  - {type: held}
-  - ␣
-  - ⏎
-  - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-option$$
-  RAI:
-  - ↹
   - '!'
   - '@'
   - '#'
@@ -57,34 +79,182 @@ layers:
   - KP MULTIPLY
   - (
   - )
+  - '|'
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  RAI:
+  - BT CLR
+  - BT 1
+  - BT 2
+  - BT 3
+  - BT 4
+  - BT 5
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Insert
+  - Print Scrn
+  - CMENU
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Alt+LEFT ARROW
+  - ↑
+  - AltGr+RIGHT ARROW
+  - '0'
   - $$mdi:backspace-outline$$
-  - $$mdi:apple-keyboard-control$$
+  - {t: ▽, type: trans}
+  - UNDO
+  - CUT
+  - COPY
+  - PASTE
+  - CLCK
+  - {t: ▽, type: trans}
+  - LEFT ARROW
+  - ↓
+  - →
+  - ⌦
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - '-'
+  - {type: held}
+  - {t: ▽, type: trans}
+  NUM:
   - '='
-  - '['
-  - ']'
-  - \
-  - '`'
+  - +
+  - '-'
+  - '*'
+  - /
+  - {t: ▽, type: trans}
+  - /
+  - '7'
+  - '8'
+  - '9'
+  - '-'
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - $$mdi:apple-keyboard-command$$
+  - $$mdi:apple-keyboard-option$$
+  - $$mdi:apple-keyboard-control$$
   - $$mdi:apple-keyboard-shift$$
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - _
+  - '4'
+  - '5'
+  - '6'
   - +
-  - '{'
-  - '}'
-  - '|'
-  - '~'
-  - $$mdi:apple-keyboard-command$$
-  - '&studio_unlock'
-  - ␣
-  - ⏎
-  - {t: '&studio_unlock', type: held}
-  - $$mdi:apple-keyboard-option$$
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '0'
+  - '1'
+  - '2'
+  - '3'
+  - .
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '0'
+  - {type: held}
+  FN:
+  - F12
+  - F7
+  - F8
+  - F9
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - MUTE
+  - Vol Down
+  - Vol Up
+  - ⏮️
+  - ⏭️
+  - {t: ▽, type: trans}
+  - F11
+  - F4
+  - F5
+  - F6
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - F10
+  - F1
+  - F2
+  - F3
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ←
+  - ↓
+  - ↑
+  - →
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - ⏯
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  SYS:
+  - BT CLR
+  - BT 1
+  - BT 2
+  - BT 3
+  - BT 4
+  - BT 5
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Boot
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - Boot
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {type: held}
+  - {t: ▽, type: trans}

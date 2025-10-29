@@ -95,7 +95,7 @@
             bindings = <
 &kp GRAVE  &kp N1        &kp N2       &kp N3        &kp N4           &kp N5                                    &kp N6           &kp N7          &kp N8        &kp N9       &kp N0           &kp MINUS
 &kp ESC    &kp Q         &kp W        &kp E         &kp R            &kp T                                     &kp Y            &kp U           &kp I         &kp O        &kp P            &kp BSPC
-&kp TAB    &hml LSHFT A  &hml LALT S  &hml LCTRL D  &hml LEFT_GUI F  &kp G                                     &kp H            &hmr RGUI J     &hmr RCTRL K  &hmr LALT L  &hmr RSHFT SEMI  &kp SQT
+&kp TAB    &hml LGUI A  &hml LALT S  &hml LCTRL D  &hml LSHFT F  &kp G                                     &kp H            &hmr RSHFT J     &hmr RCTRL K  &hmr RALT L  &hmr RGUI SEMI  &kp SQT
 &kp LSHFT  &kp Z         &kp X        &kp C         &kp V            &kp B   &kp C_MUTE      &kp C_PLAY_PAUSE  &kp N            &kp M           &kp COMMA     &kp DOT      &kp FSLH         &kp RSHFT
                          &kp LCTRL    &kp LALT      &kp LGUI         &mo 1   &mt LGUI RET    &kp SPACE         &lt 2 BACKSPACE  &smart_num 3 0  &mo 4         &kp RGUI
             >;
