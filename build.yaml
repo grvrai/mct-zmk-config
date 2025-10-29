@@ -177,6 +177,19 @@ include:
   #   ### Pro Micro END ###
   # ### CORNE END ###
 
+  ### CORNE HRM BUILD START ###
+  # nice!view corne with HRMs
+  - board: nice_nano_v2
+    shield: corne_left nice_view_adapter nice_epaper
+    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Corne_HRM\"  -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=60000
+    artifact-name: nice_corne_left_view_hrm
+    snippet: studio-rpc-usb-uart
+  - board: nice_nano_v2
+    shield: corne_right nice_view_adapter nice_epaper
+    cmake-args: -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=60000
+    artifact-name: nice_corne_right_view_hrm
+  ### CORNE HRM BUILD END ###
+
   ### SOFLEV2 SOFLEV1 SOFLEPLUS START ###
   # nice!oled sofle
   - board: nice_nano_v2
