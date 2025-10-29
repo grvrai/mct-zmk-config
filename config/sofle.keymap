@@ -176,7 +176,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &rgb_ug RGB_TOG     &rgb_ug RGB_HUI &rgb_ug RGB_SAI &rgb_ug RGB_BRI &rgb_ug RGB_EFF &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &ext_power EP_TOG   &kp C_PREV      &kp C_NEXT      &kp C_PP        &kp C_STOP      &trans
 &trans  &trans        &kp RALT   &mo FUN    &mo MEDIA  &trans  &trans      &trans   &out OUT_TOG        &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3    &trans
-                      &trans     &trans     &trans     &trans              &trans   &kp C_MUTE          &kp C_VOL_DN    &kp C_VOL_UP
+                      &trans     &trans     &trans     &trans              &trans   &kp C_MUTE          &kp C_VOL_DN    &kp C_VOL_UP    &none
             >;
 
             sensor-bindings =
@@ -199,7 +199,7 @@
 &kp EQUAL  &kp PLUS  &kp MINUS  &kp STAR   &kp FSLH   &trans                       &kp FSLH  &kp N7  &kp N8  &kp N9  &kp MINUS  &trans
 &kp EQUAL  &kp PLUS  &kp LGUI   &kp LALT   &kp LCTRL  &kp LSHFT                    &trans    &kp N4  &kp N5  &kp N6  &kp PLUS   &trans
 &trans     &trans    &trans     &kp LBRC   &kp RBRC   &trans     &trans    &trans  &kp N0    &kp N1  &kp N2  &kp N3  &kp DOT    &trans
-                     &trans     &trans     &trans     &trans               &trans  &trans    &kp N0  &trans
+                     &trans     &trans     &trans     &trans               &trans  &trans    &kp N0  &trans  &none
             >;
 
             sensor-bindings =
@@ -222,7 +222,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &kp LBRC   &kp AMPS  &kp ASTRK &kp LPAR  &kp RBRC   &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &kp PLUS   &kp DLLR  &kp PRCNT &kp CARET &kp COLON  &trans
 &trans  &trans        &kp RALT   &mo SYM    &mo MOUSE  &trans  &trans      &trans   &kp PIPE   &kp EXCL  &kp AT    &kp HASH  &kp TILDE  &trans
-                      &trans     &trans     &none      &none                &trans   &kp UNDER  &kp LPAR  &kp RPAR
+                      &trans     &trans     &none      &none                &trans   &kp UNDER  &kp LPAR  &kp RPAR  &none
             >;
 
             sensor-bindings =
@@ -245,7 +245,7 @@
 &trans  &bootloader   &trans     &trans     &to BASE   &trans                       &kp PSCRN        &kp F7     &kp F8     &kp F9     &kp F12  &trans
 &trans  &kp LGUI      &kp LALT   &kp LCTRL  &kp LSHFT  &trans                       &kp SLCK         &kp F4     &kp F5     &kp F6     &kp F11  &trans
 &trans  &trans        &kp RALT   &mo FUN    &mo MEDIA  &trans  &trans      &trans   &kp PAUSE_BREAK  &kp F1     &kp F2     &kp F3     &kp F10  &trans
-                      &trans     &trans     &none      &none                &trans   &kp TAB          &kp SPACE  &kp K_APP
+                      &trans     &trans     &none      &none                &trans   &kp TAB          &kp SPACE  &kp K_APP  &none
             >;
 
             sensor-bindings =
