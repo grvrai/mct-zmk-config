@@ -6,6 +6,128 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 This is a ZMK firmware configuration repository for split mechanical keyboards (Corne, Sofle, Lily58, and SplitKB Aurora Sofle). It supports wireless operation with nice!nano v2, puchi_ble_v1, and Seeeduino XIAO BLE controllers. The repository includes advanced features like dongle support, ZMK Studio integration, and multiple display options.
 
+### Active Keyboards in This Repository
+
+**Primary keyboards with unified Miryoku-inspired layout:**
+1. **Corne (CRKBD)** - 42-key split keyboard with nice!view ePaper displays
+2. **Sofle** - 58-key split keyboard with nice!oled displays
+
+Both keyboards use:
+- Unified 8-layer structure (BASE, NAV, MOUSE, MEDIA, NUM, SYM, FUN, SYS)
+- Miryoku-inspired layout with right-hand IJKL navigation
+- Urob's home row mods timing (280ms/175ms/150ms)
+- Urob's num layer design (left hand modifiers, right hand numbers)
+- ZMK Studio runtime keymap editing
+
+## Keyboard Hardware Details
+
+### Corne (CRKBD) - 42 Keys
+
+**Physical Layout:**
+- **Matrix:** 3 rows × 6 columns per side = 36 keys
+- **Thumb cluster:** 3 keys per side = 6 thumb keys
+- **Total:** 42 keys (36 + 6)
+
+**Hardware Configuration:**
+- **Controller:** nice!nano v2 (nRF52840)
+- **Display:** nice!view ePaper (ultra-low power, reflective display)
+  - Left side (central): Layer, battery, output status, WPM
+  - Right side (peripheral): Battery percentage (static)
+- **Power:** 2× 110mAh LiPo batteries (one per side)
+- **Wireless:** BLE 5.0 (split communication + host connection)
+
+**Build Configuration:**
+```yaml
+board: nice_nano_v2
+shield: corne_left nice_view_adapter nice_epaper
+        corne_right nice_view_adapter nice_epaper
+```
+
+**Display Settings (config/corne.conf):**
+- `CONFIG_ZMK_DISPLAY=y` - Enable display
+- `CONFIG_LV_Z_VDB_SIZE=64` - Display buffer size
+- `CONFIG_LV_DPI=148` - Display contrast (100-200 for brightness adjustment)
+- `CONFIG_NICE_OLED_GEM_ANIMATION_MS=0` - Disable animations for static display
+- WPM widget supported natively by nice!view
+
+**Features:**
+- ZMK Studio enabled for runtime keymap editing
+- Idle sleep: 15 minutes (900000ms)
+- Bluetooth 5 profiles
+- Debouncing: 1ms press, 5ms release (low latency)
+
+### Sofle - 58 Keys
+
+**Physical Layout:**
+- **Matrix:** 4 rows × 6 columns per side = 48 keys
+- **Thumb cluster:** 5 keys per side = 10 thumb keys
+- **Total:** 58 keys (48 + 10)
+- **Rotary Encoders:** 2× encoders (one per side, optional)
+
+**Hardware Configuration:**
+- **Controller:** nice!nano v2 (nRF52840)
+- **Display:** nice!oled (128×32 OLED, vertical orientation)
+  - Left side (central): Custom widgets (layer, battery, WPM, Luna animation optional)
+  - Right side (peripheral): Battery and status
+- **Power:** 2× 110mAh LiPo batteries (one per side)
+- **Wireless:** BLE 5.0 (split communication + host connection)
+- **Encoders:** Volume control (left), scrolling (right)
+
+**Build Configuration:**
+```yaml
+board: nice_nano_v2
+shield: sofle_left nice_oled
+        sofle_right nice_oled
+```
+
+**Display Settings (config/sofle.conf):**
+- Uses zmk-nice-oled module for custom vertical OLED widgets
+- Supports Luna pet animation (optional)
+- WPM tracking widget
+- HID indicators for caps lock, num lock, etc.
+
+**Features:**
+- ZMK Studio enabled for runtime keymap editing
+- Idle sleep: 60 seconds (60000ms)
+- Bluetooth 5 profiles
+- Rotary encoder support with sensor bindings
+- More thumb keys than Corne (5 per side vs 3)
+
+### Hardware Comparison
+
+| Feature | Corne (42-key) | Sofle (58-key) |
+|---------|----------------|----------------|
+| **Keys** | 42 (3×6×2 + 6 thumbs) | 58 (4×6×2 + 10 thumbs) |
+| **Display** | nice!view ePaper | nice!oled (128×32) |
+| **Encoders** | None | 2× rotary encoders |
+| **Thumb Keys** | 3 per side | 5 per side |
+| **Number Row** | No dedicated row | Yes (top row) |
+| **Display Type** | Reflective ePaper (no backlight) | Backlit OLED |
+| **Power Usage** | Ultra-low (ePaper) | Low (OLED) |
+| **Keymap File** | config/corne.keymap | config/sofle.keymap |
+| **Config File** | config/corne.conf | config/sofle.conf |
+
+### Controller Compatibility
+
+Both keyboards support multiple wireless controllers:
+
+1. **nice!nano v2** (Recommended)
+   - nRF52840 processor
+   - Built-in LiPo charging
+   - Pro Micro pinout
+   - Best compatibility
+
+2. **puchi_ble_v1**
+   - Smaller form factor
+   - nRF52840 processor
+   - Pro Micro pinout
+
+3. **Seeeduino XIAO BLE**
+   - Ultra-compact
+   - nRF52840 processor
+   - Different pinout (requires XIAO-specific shields)
+   - Used for dongle builds
+
 ## Build Commands
 
 ### Building Firmware with Docker
