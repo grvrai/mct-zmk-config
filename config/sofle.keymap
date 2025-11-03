@@ -275,5 +275,18 @@
                 <&inc_dec_kp C_VOL_UP C_VOL_DN>,
                 <&inc_dec_kp LC(RIGHT) LC(LEFT)>;
         };
+
+        // Reserved layers for ZMK Studio
+        extra_1 {
+            status = "reserved";
+        };
+
+        extra_2 {
+            status = "reserved";
+        };
+
+        extra_3 {
+            status = "reserved";
+        };
     };
 };
