@@ -37,19 +37,19 @@ layers:
   - .
   - /
   - $$mdi:apple-keyboard-shift$$
-  - {t: Esc, h: MEDI}
+  - Esc
   - {t: ⏎, h: NAV}
-  - {t: ↹, h: MOUS}
+  - ↹
   - {t: ␣, h: SYM}
   - {t: '$$mdi:backspace-outline$$', h: NUM}
   - {t: ⌦, h: FUN}
   NAV:
   - {t: ▽, type: trans}
-  - REDO
-  - UNDO
-  - COPY
-  - CUT
-  - PASTE
+  - Home
+  - Page Down
+  - ↑
+  - Page Up
+  - End
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -58,7 +58,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Caps Lock
-  - ↑
+  - ←
   - ↓
   - →
   - Insert
@@ -69,11 +69,11 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - Boot
-  - Home
-  - ←
-  - ↓
-  - →
-  - End
+  - UNDO
+  - COPY
+  - CUT
+  - PASTE
+  - REDO
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -82,92 +82,6 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: NAV, type: held}
-  - Page Up
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  MOUS:
-  - {t: ▽, type: trans}
-  - Boot
-  - ''
-  - ''
-  - {t: BASE, h: toggle}
-  - ''
-  - '&msc SCRL_LEFT'
-  - '&msc SCRL_UP'
-  - '&msc SCRL_DOWN'
-  - '&msc SCRL_RIGHT'
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-control$$
-  - $$mdi:apple-keyboard-option$$
-  - $$mdi:apple-keyboard-command$$
-  - $$mdi:apple-keyboard-shift$$
-  - ''
-  - '&mkp LCLK'
-  - '&mmv MOVE_UP'
-  - '&mmv MOVE_LEFT'
-  - '&mmv MOVE_DOWN'
-  - '&mmv MOVE_RIGHT'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - ''
-  - $$mdi:apple-keyboard-option$$
-  - SYM
-  - MOUS
-  - ''
-  - '&mkp RCLK'
-  - '&mkp MCLK'
-  - '&mkp MB4'
-  - '&mkp MB5'
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {type: held}
-  - '&mkp LCLK'
-  - '&mkp RCLK'
-  - '&mkp MCLK'
-  MEDI:
-  - Boot
-  - ⏮️
-  - ⏯
-  - ⏭️
-  - STOP
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - $$mdi:apple-keyboard-control$$
-  - $$mdi:apple-keyboard-option$$
-  - $$mdi:apple-keyboard-command$$
-  - $$mdi:apple-keyboard-shift$$
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - MUTE
-  - Vol Down
-  - Vol Up
-  - MEDI
-  - ''
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: MEDI, type: held}
-  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -186,10 +100,10 @@ layers:
   - '-'
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - $$mdi:apple-keyboard-control$$
+  - $$mdi:apple-keyboard-option$$
+  - $$mdi:apple-keyboard-command$$
+  - $$mdi:apple-keyboard-shift$$
   - {t: ▽, type: trans}
   - '*'
   - '4'
@@ -217,47 +131,47 @@ layers:
   - '='
   SYM:
   - {t: ▽, type: trans}
-  - '`'
   - '!'
   - '@'
   - '#'
   - $
-  - ^
-  - '['
-  - ']'
-  - '*'
   - '%'
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - _
-  - '-'
-  - +
-  - '='
+  - ^
   - AMPS
-  - '|'
+  - '*'
   - (
   - )
-  - \
-  - ':'
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - '='
+  - '-'
+  - +
+  - _
+  - '`'
+  - '['
+  - (
+  - )
+  - ']'
+  - ':'
+  - '"'
   - {t: ▽, type: trans}
   - '~'
-  - /
-  - '"'
-  - ''''
-  - '?'
   - <
-  - '{'
-  - '}'
   - '>'
+  - '|'
+  - \
+  - '{'
+  - ''''
+  - ','
+  - '}'
   - ;
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {type: held}
-  - (
-  - )
+  - {t: SYM, type: held}
+  - /
+  - .
   FUN:
   - {t: ▽, type: trans}
   - Boot
@@ -287,7 +201,7 @@ layers:
   - ''
   - $$mdi:apple-keyboard-option$$
   - FUN
-  - MEDI
+  - ''
   - ''
   - Pause Break
   - F1
@@ -301,8 +215,51 @@ layers:
   - ↹
   - ␣
   - {t: APP, type: held}
+  GAME:
+  - ↹
+  - Q
+  - W
+  - E
+  - R
+  - T
+  - Y
+  - U
+  - I
+  - O
+  - P
+  - $$mdi:backspace-outline$$
+  - Esc
+  - A
+  - S
+  - D
+  - F
+  - G
+  - H
+  - J
+  - K
+  - L
+  - ;
+  - ''''
+  - $$mdi:apple-keyboard-shift$$
+  - Z
+  - X
+  - C
+  - V
+  - B
+  - N
+  - M
+  - ','
+  - .
+  - /
+  - $$mdi:apple-keyboard-shift$$
+  - $$mdi:apple-keyboard-control$$
+  - ␣
+  - $$mdi:apple-keyboard-option$$
+  - {t: ␣, h: SYM}
+  - {t: '$$mdi:backspace-outline$$', h: NUM}
+  - {t: ⌦, h: FUN}
   SYS:
-  - BT CLR
+  - {t: BT CLR, type: held}
   - BT 1
   - BT 2
   - BT 3
@@ -318,7 +275,7 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {t: GAME, h: toggle}
   - OUT TOG
   - OUT TOG
   - {t: ▽, type: trans}
@@ -326,11 +283,11 @@ layers:
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
-  - {t: ▽, type: trans}
+  - {t: BASE, h: toggle}
   - EP TOG
   - OUT TOG
   - BT 1
@@ -338,9 +295,16 @@ layers:
   - BT 3
   - BT 4
   - Boot
-  - {type: held}
-  - {type: held}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+  - {t: ▽, type: trans}
+combos:
+- p: [0, 24]
+  k: SYS
+  l: [GAME]
+- p: [0, 24]
+  k: SYS
+  l: [BASE]

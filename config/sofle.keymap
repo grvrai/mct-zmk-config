@@ -121,19 +121,19 @@
             display-name = "NAV";
             // ------------------------------------------------------------------------------------------------------------
             // |      |     |     |      |      |      |                   |      |      |      |      |       |       |
-            // |      |REDO |UNDO | COPY | CUT  |PASTE |                   |      |      |      |      |       |       |
-            // |      |CAPS | UP  | DOWN |RIGHT | INS  |                   |      |      |      |      |       |       |
-            // |BOOT  |HOME | LEFT| DOWN |RIGHT | END  |       |  |        |      |      |      |      |       |       |
+            // |      |     |     | UP   |      |      |                   |      |      |      |      |       |       |
+            // |      |     | LEFT| DOWN |RIGHT |      |                   |      |      |      |      |       |       |
             //       |     | (E) | (S)  | (D)  | (F)  |
+            // |BOOT  |UNDO |COPY | CUT  |PASTE |REDO  |       |  |        |      |      |      |      |       |       |
             //                    |      |      | NAV  |PG_UP  |  |        |      |      |      |
             //                                         |PG_DN  |
 
             bindings = <
+&trans       &kp HOME   &kp PG_DN  &kp UP     &kp PG_UP  &kp END                      &trans  &trans  &trans  &trans  &trans  &trans
 &trans       &trans     &trans     &trans     &trans     &trans                       &trans  &trans  &trans  &trans  &trans  &trans
-&trans       &kp K_REDO &kp K_UNDO &kp K_COPY &kp K_CUT  &kp K_PASTE                  &trans  &trans  &trans  &trans  &trans  &trans
-&trans       &kp CAPS   &kp UP     &kp DOWN   &kp RIGHT  &kp INS                      &trans  &trans  &trans  &trans  &trans  &trans
-&bootloader  &kp HOME   &kp LEFT   &kp DOWN   &kp RIGHT  &kp END     &trans  &trans   &trans  &trans  &trans  &trans  &trans  &trans
-                        &trans     &trans     &trans     &mo NAV     &kp PG_UP &trans &trans  &trans  &trans  &trans
+&trans       &kp CAPS   &kp LEFT   &kp DOWN   &kp RIGHT  &kp INS                      &trans  &trans  &trans  &trans  &trans  &trans
+&bootloader  &kp K_UNDO &kp K_COPY &kp K_CUT  &kp K_PASTE &kp K_REDO  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+                        &trans     &trans     &trans     &mo NAV     &trans  &trans   &trans  &trans  &trans  &trans
             >;
 
             sensor-bindings =
