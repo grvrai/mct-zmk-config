@@ -6,6 +6,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#include <zmk-helpers/helper.h>
+#include <zmk-helpers/key-labels/totem.h>
 #include <behaviors/num_word.dtsi>
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/bt.h>
