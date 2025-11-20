@@ -36,9 +36,9 @@ manifest:
     - name: zmk-helpers
       remote: urob
       revision: main
-    # zmk-auto-layer - numword behavior (commented out due to compatibility issues)
-    # - name: zmk-auto-layer
-    #   remote: urob
-    #   revision: main
+    # zmk-auto-layer - numword behavior
+    - name: zmk-auto-layer
+      remote: urob
+      revision: main
   self:
     path: config
