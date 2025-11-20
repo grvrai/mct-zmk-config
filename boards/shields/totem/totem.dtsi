@@ -5,11 +5,12 @@
  */
 
 #include <dt-bindings/zmk/matrix_transform.h>
+#include <physical_layouts.dtsi>
 
 / {
     chosen {
         zmk,kscan = &kscan0;
-        zmk,matrix-transform = &default_transform;
+        zmk,physical-layout = &totem_layout;
     };
 
     default_transform: keymap_transform_0 {
@@ -26,6 +27,64 @@
             RC(3,0) RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5) RC(2,6) RC(2,7) RC(2,8) RC(2,9) RC(3,9)
                             RC(3,2) RC(3,3) RC(3,4) RC(3,5) RC(3,6) RC(3,7)
         >;
+    };
+
+    totem_layout: totem_layout {
+        compatible = "zmk,physical-layout";
+        display-name = "Totem";
+        transform = <&default_transform>;
+        kscan = <&kscan0>;
+
+        // Totem 38-key layout with column stagger
+        // Standard 1u keys positioned in column-staggered layout
+        keys
+            // Left hand - Row 0 (top)
+            = <&key_physical_attrs 100 100    0   0 0 0 0>
+            , <&key_physical_attrs 100 100  100   0 0 0 0>
+            , <&key_physical_attrs 100 100  200   0 0 0 0>
+            , <&key_physical_attrs 100 100  300   0 0 0 0>
+            , <&key_physical_attrs 100 100  400   0 0 0 0>
+            // Right hand - Row 0 (top)
+            , <&key_physical_attrs 100 100  700   0 0 0 0>
+            , <&key_physical_attrs 100 100  800   0 0 0 0>
+            , <&key_physical_attrs 100 100  900   0 0 0 0>
+            , <&key_physical_attrs 100 100 1000   0 0 0 0>
+            , <&key_physical_attrs 100 100 1100   0 0 0 0>
+            // Left hand - Row 1 (home)
+            , <&key_physical_attrs 100 100    0 100 0 0 0>
+            , <&key_physical_attrs 100 100  100 100 0 0 0>
+            , <&key_physical_attrs 100 100  200 100 0 0 0>
+            , <&key_physical_attrs 100 100  300 100 0 0 0>
+            , <&key_physical_attrs 100 100  400 100 0 0 0>
+            // Right hand - Row 1 (home)
+            , <&key_physical_attrs 100 100  700 100 0 0 0>
+            , <&key_physical_attrs 100 100  800 100 0 0 0>
+            , <&key_physical_attrs 100 100  900 100 0 0 0>
+            , <&key_physical_attrs 100 100 1000 100 0 0 0>
+            , <&key_physical_attrs 100 100 1100 100 0 0 0>
+            // Left hand - Row 2 (bottom) - includes outer pinky key
+            , <&key_physical_attrs 100 100  -50 200 0 0 0>
+            , <&key_physical_attrs 100 100    0 200 0 0 0>
+            , <&key_physical_attrs 100 100  100 200 0 0 0>
+            , <&key_physical_attrs 100 100  200 200 0 0 0>
+            , <&key_physical_attrs 100 100  300 200 0 0 0>
+            , <&key_physical_attrs 100 100  400 200 0 0 0>
+            // Right hand - Row 2 (bottom) - includes outer pinky key
+            , <&key_physical_attrs 100 100  700 200 0 0 0>
+            , <&key_physical_attrs 100 100  800 200 0 0 0>
+            , <&key_physical_attrs 100 100  900 200 0 0 0>
+            , <&key_physical_attrs 100 100 1000 200 0 0 0>
+            , <&key_physical_attrs 100 100 1100 200 0 0 0>
+            , <&key_physical_attrs 100 100 1150 200 0 0 0>
+            // Left hand - Thumb cluster (3 keys)
+            , <&key_physical_attrs 100 100  200 300 0 0 0>
+            , <&key_physical_attrs 100 100  300 300 0 0 0>
+            , <&key_physical_attrs 100 100  400 300 0 0 0>
+            // Right hand - Thumb cluster (3 keys)
+            , <&key_physical_attrs 100 100  700 300 0 0 0>
+            , <&key_physical_attrs 100 100  800 300 0 0 0>
+            , <&key_physical_attrs 100 100  900 300 0 0 0>
+            ;
     };
 
     kscan0: kscan_0 {
