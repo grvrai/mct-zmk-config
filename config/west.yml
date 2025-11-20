@@ -14,7 +14,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: d207c3c3e05d1e28c7eb1fdb6e2d5ad99bfcbc92
       import: app/west.yml
     # dongle_display
     - name: zmk-dongle-display
