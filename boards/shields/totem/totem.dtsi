@@ -37,53 +37,51 @@
 
         // Totem 38-key layout with column stagger
         // Standard 1u keys positioned in column-staggered layout
+        // Order matches matrix_transform map order (row by row)
         keys
-            // Left hand - Row 0 (top)
+            // Row 0 (top row) - 5 keys left, 5 keys right
             = <&key_physical_attrs 100 100    0   0 0 0 0>
             , <&key_physical_attrs 100 100  100   0 0 0 0>
             , <&key_physical_attrs 100 100  200   0 0 0 0>
             , <&key_physical_attrs 100 100  300   0 0 0 0>
             , <&key_physical_attrs 100 100  400   0 0 0 0>
-            // Right hand - Row 0 (top)
             , <&key_physical_attrs 100 100  700   0 0 0 0>
             , <&key_physical_attrs 100 100  800   0 0 0 0>
             , <&key_physical_attrs 100 100  900   0 0 0 0>
             , <&key_physical_attrs 100 100 1000   0 0 0 0>
             , <&key_physical_attrs 100 100 1100   0 0 0 0>
-            // Left hand - Row 1 (home)
+            // Row 1 (home row) - 5 keys left, 5 keys right
             , <&key_physical_attrs 100 100    0 100 0 0 0>
             , <&key_physical_attrs 100 100  100 100 0 0 0>
             , <&key_physical_attrs 100 100  200 100 0 0 0>
             , <&key_physical_attrs 100 100  300 100 0 0 0>
             , <&key_physical_attrs 100 100  400 100 0 0 0>
-            // Right hand - Row 1 (home)
             , <&key_physical_attrs 100 100  700 100 0 0 0>
             , <&key_physical_attrs 100 100  800 100 0 0 0>
             , <&key_physical_attrs 100 100  900 100 0 0 0>
             , <&key_physical_attrs 100 100 1000 100 0 0 0>
             , <&key_physical_attrs 100 100 1100 100 0 0 0>
-            // Left hand - Row 2 (bottom) - includes outer pinky key
-            , <&key_physical_attrs 100 100  -50 200 0 0 0>
-            , <&key_physical_attrs 100 100    0 200 0 0 0>
-            , <&key_physical_attrs 100 100  100 200 0 0 0>
-            , <&key_physical_attrs 100 100  200 200 0 0 0>
-            , <&key_physical_attrs 100 100  300 200 0 0 0>
-            , <&key_physical_attrs 100 100  400 200 0 0 0>
-            // Right hand - Row 2 (bottom) - includes outer pinky key
-            , <&key_physical_attrs 100 100  700 200 0 0 0>
-            , <&key_physical_attrs 100 100  800 200 0 0 0>
-            , <&key_physical_attrs 100 100  900 200 0 0 0>
-            , <&key_physical_attrs 100 100 1000 200 0 0 0>
-            , <&key_physical_attrs 100 100 1100 200 0 0 0>
-            , <&key_physical_attrs 100 100 1150 200 0 0 0>
-            // Left hand - Thumb cluster (3 keys)
-            , <&key_physical_attrs 100 100  200 300 0 0 0>
-            , <&key_physical_attrs 100 100  300 300 0 0 0>
-            , <&key_physical_attrs 100 100  400 300 0 0 0>
-            // Right hand - Thumb cluster (3 keys)
-            , <&key_physical_attrs 100 100  700 300 0 0 0>
-            , <&key_physical_attrs 100 100  800 300 0 0 0>
-            , <&key_physical_attrs 100 100  900 300 0 0 0>
+            // Row 2 (bottom row) - outer pinky + 5 keys left, 5 keys + outer pinky right
+            // Note: Outer pinky keys come first in map (RC(3,0) and last (RC(3,9))
+            , <&key_physical_attrs 100 100    0 220 0 0 0>
+            , <&key_physical_attrs 100 100   20 200 0 0 0>
+            , <&key_physical_attrs 100 100  120 200 0 0 0>
+            , <&key_physical_attrs 100 100  220 200 0 0 0>
+            , <&key_physical_attrs 100 100  320 200 0 0 0>
+            , <&key_physical_attrs 100 100  420 200 0 0 0>
+            , <&key_physical_attrs 100 100  720 200 0 0 0>
+            , <&key_physical_attrs 100 100  820 200 0 0 0>
+            , <&key_physical_attrs 100 100  920 200 0 0 0>
+            , <&key_physical_attrs 100 100 1020 200 0 0 0>
+            , <&key_physical_attrs 100 100 1120 200 0 0 0>
+            , <&key_physical_attrs 100 100 1120 220 0 0 0>
+            // Thumb cluster - 3 keys left, 3 keys right
+            , <&key_physical_attrs 100 100  220 300 0 0 0>
+            , <&key_physical_attrs 100 100  320 300 0 0 0>
+            , <&key_physical_attrs 100 100  420 300 0 0 0>
+            , <&key_physical_attrs 100 100  720 300 0 0 0>
+            , <&key_physical_attrs 100 100  820 300 0 0 0>
+            , <&key_physical_attrs 100 100  920 300 0 0 0>
             ;
     };
 
