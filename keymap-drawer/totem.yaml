@@ -45,7 +45,7 @@ layers:
   - ↑
   - Page Up
   - End
-  - {t: ▽, type: trans}
+  - Win Next
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
@@ -138,7 +138,7 @@ layers:
   - )
   - ']'
   - ':'
-  - ↹
+  - {t: ▽, type: trans}
   - '~'
   - <
   - '>'
@@ -149,7 +149,7 @@ layers:
   - ','
   - '}'
   - ;
-  - '"'
+  - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
   - {t: ▽, type: trans}
