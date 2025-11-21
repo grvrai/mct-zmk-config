@@ -40,5 +40,9 @@ manifest:
     - name: zmk-auto-layer
       remote: urob
       revision: v0.3.0
+    # zmk-tri-state - tri-state behavior for app switcher
+    - name: zmk-tri-state
+      remote: urob
+      revision: v0.3.0
   self:
     path: config
