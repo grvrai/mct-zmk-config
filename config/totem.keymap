@@ -86,6 +86,7 @@
         behaviors {
             swapper: swapper {
                 compatible = "zmk,behavior-tri-state";
+                label = "SWAPPER";
                 #binding-cells = <0>;
                 bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
                 ignored-key-positions = <LM2 LB2 LB3>;
