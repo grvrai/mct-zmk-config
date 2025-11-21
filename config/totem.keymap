@@ -84,8 +84,7 @@
     // Can use arrow keys (UP/DOWN/LEFT/RIGHT) while held to navigate
     ZMK_TRI_STATE(swapper,
         bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-        ignored-key-positions = <LM2 LB2 LB3>;  // Allow arrow keys (UP/DOWN/RIGHT) without ending swapper
-    )
+        ignored-key-positions = <LM2 LB2 LB3>;)  // Allow arrow keys (UP/DOWN/RIGHT) without ending swapper
 
     combos {
         compatible = "zmk,combos";
