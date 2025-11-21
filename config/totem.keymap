@@ -77,20 +77,16 @@
             quick-tap-ms = <175>;
             bindings = <&mo>, <&num_dance>;
         };
-    };
 
-    // App switcher tri-state for macOS (Cmd+Tab)
-    // Tap: Cmd+Tab, Continue tapping: cycle through apps, Release: select app
-    // Can use arrow keys (UP/DOWN/LEFT/RIGHT) while held to navigate
-    / {
-        behaviors {
-            swapper: swapper {
-                compatible = "zmk,behavior-tri-state";
-                label = "SWAPPER";
-                #binding-cells = <0>;
-                bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
-                ignored-key-positions = <LM2 LB2 LB3>;
-            };
+        // App switcher tri-state for macOS (Cmd+Tab)
+        // Tap: Cmd+Tab, Continue tapping: cycle through apps, Release: select app
+        // Can use arrow keys (UP/DOWN/LEFT/RIGHT) while held to navigate
+        swapper: swapper {
+            compatible = "zmk,behavior-tri-state";
+            label = "SWAPPER";
+            #binding-cells = <0>;
+            bindings = <&kt LGUI>, <&kp TAB>, <&kt LGUI>;
+            ignored-key-positions = <LM2 LB2 LB3>;
         };
     };
 

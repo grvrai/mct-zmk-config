@@ -1,4 +1,6 @@
 manifest:
+  defaults:
+    revision: v0.1
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
@@ -43,6 +45,5 @@ manifest:
     # zmk-tri-state - tri-state behavior for app switcher
     - name: zmk-tri-state
       remote: urob
-      revision: v0.3.0
   self:
     path: config
