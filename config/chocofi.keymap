@@ -34,6 +34,22 @@
 
 / {
     behaviors {
+        // Swapper for Ctrl+Tab window switching (macOS with swapped GUI/Ctrl)
+        swapper: swapper {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LCTRL>, <&kp TAB>, <&kt LCTRL>;
+            ignored-key-positions = <1 2 3 4 11 12 13 14 15 25>; // Allow Shift+Tab, navigation keys, and swapper_grave
+        };
+
+        // Swapper for Ctrl+` window switching within same app (macOS)
+        swapper_grave: swapper_grave {
+            compatible = "zmk,behavior-tri-state";
+            #binding-cells = <0>;
+            bindings = <&kt LCTRL>, <&kp GRAVE>, <&kt LCTRL>;
+            ignored-key-positions = <1 2 3 4 11 12 13 14 15 25>; // Allow navigation keys and swapper
+        };
+
         // Home row mods - left hand (urob's timing)
         hml: homerow_mods_left {
             compatible = "zmk,behavior-hold-tap";
@@ -91,6 +107,16 @@
         };
     };
 
+    conditional_layers {
+        compatible = "zmk,conditional-layers";
+
+        // SYM + FUN held together activates SYS layer
+        tri_layer {
+            if-layers = <SYM FUN>;
+            then-layer = <SYS>;
+        };
+    };
+
     keymap {
         compatible = "zmk,keymap";
 
@@ -117,16 +143,16 @@
         nav_layer {
             display-name = "NAV";
             // -----------------------------------------------------------------------------------------
-            // | HOME|PG_DN| UP  |PG_UP| END |   |     |     |     |     |     |
-            // | CAPS| LEFT| DOWN|RIGHT| INS |   |     |SHFT | GUI | ALT |CTRL |
-            // | UNDO| COPY| CUT |PASTE| REDO|   |     |     |     |     |     |
+            // | HOME|PG_DN| UP  |PG_UP| END |   |SW_` |     |     |     |     |
+            // | CAPS| LEFT| DOWN|RIGHT| INS |   |SWAP |SHFT | GUI | ALT |CTRL |
+            // | UNDO| COPY| CUT |PASTE| REDO|   |S+TAB|     |     |     |     |
             //             |     | NAV |     |   |     |     |     |
 
             bindings = <
-&kp HOME   &kp PG_DN  &kp UP     &kp PG_UP   &kp END       &trans  &trans     &trans    &trans    &trans
-&kp CAPS   &kp LEFT   &kp DOWN   &kp RIGHT   &kp INS       &trans  &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL
-&kp K_UNDO &kp K_COPY &kp K_CUT  &kp K_PASTE &kp K_REDO    &trans  &trans     &trans    &trans    &trans
-                      &trans     &mo NAV     &trans        &trans  &trans     &trans
+&kp HOME   &kp PG_DN  &kp UP     &kp PG_UP   &kp END       &swapper_grave &trans     &trans    &trans    &trans
+&kp CAPS   &kp LEFT   &kp DOWN   &kp RIGHT   &kp INS       &swapper       &kp RSHFT  &kp RGUI  &kp RALT  &kp RCTRL
+&kp K_UNDO &kp K_COPY &kp K_CUT  &kp K_PASTE &kp K_REDO    &kp LS(TAB)    &trans     &trans    &trans    &trans
+                      &trans     &mo NAV     &trans        &trans         &trans     &trans
             >;
         };
 
