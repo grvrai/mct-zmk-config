@@ -93,7 +93,7 @@
             quick-tap-ms = <175>;
             bindings = <&mo>, <&num_dance>;
         };
-    }
+    };
 
     combos {
         compatible = "zmk,combos";
