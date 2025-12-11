@@ -25,5 +25,5 @@
     status = "okay";
 };
 
-// nice_view display is configured via nice_view_adapter + nice_view shields in build.yaml
-// The nice_view shield provides custom widgets including battery display
+// nice_view display is configured via nice_view_adapter + nice_epaper shields
+// The SPI bus (nice_view_spi) is defined in hillside_view.dtsi
