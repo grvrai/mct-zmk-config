@@ -25,14 +25,5 @@
     status = "okay";
 };
 
-&chosen {
-    zephyr,display = &nice_view;
-};
-
-&nice_view_spi {
-    status = "okay";
-};
-
-&nice_view {
-    status = "okay";
-};
+// nice_view display is configured via nice_view_adapter + nice_view shields in build.yaml
+// The nice_view shield provides custom widgets including battery display
