@@ -17,24 +17,21 @@
         ;
 };
 
-// TEMPORARILY DISABLED: Encoder conflicts with nice_view SPI on pin 20
-// This is to test if the encoder is causing the sleep wake issue
-// &left_encoder {
-//     status = "okay";
-//   a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-//   b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-// };
+&left_encoder {
+    status = "okay";
+  a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+  b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+};
 
-// TEMPORARILY DISABLED: Testing if display causes sleep wake issue
-// &chosen {
-//   zephyr,display = &nice_view;
-// };
+&chosen {
+  zephyr,display = &nice_view;
+};
 
 // nice view bus
-// &nice_view_spi {
-//   status = "okay";
-// };
+&nice_view_spi {
+  status = "okay";
+};
 
-// &nice_view {
-//   status = "okay";
-// };
+&nice_view {
+  status = "okay";
+};
