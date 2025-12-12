@@ -6,8 +6,7 @@
 
 #include "hillside_view.dtsi"
 
-&kscan0 {
-    wakeup-source;
+&kscan0  {
     col-gpios
         = <&gpio1 7 GPIO_ACTIVE_HIGH>
         , <&pro_micro 18 GPIO_ACTIVE_HIGH>
@@ -20,18 +19,19 @@
 
 &left_encoder {
     status = "okay";
-    a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-    b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+  a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+  b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 };
 
 &chosen {
-    zephyr,display = &nice_view;
+  zephyr,display = &nice_view;
 };
 
+// nice view bus
 &nice_view_spi {
-    status = "okay";
+  status = "okay";
 };
 
 &nice_view {
-    status = "okay";
+  status = "okay";
 };
