@@ -24,5 +24,14 @@
     b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 };
 
-// nice_view display is configured via nice_view_adapter + nice_epaper shields
-// The SPI bus (nice_view_spi) is defined in hillside_view.dtsi
+&chosen {
+    zephyr,display = &nice_view;
+};
+
+&nice_view_spi {
+    status = "okay";
+};
+
+&nice_view {
+    status = "okay";
+};
