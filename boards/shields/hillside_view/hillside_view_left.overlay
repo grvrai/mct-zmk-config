@@ -23,15 +23,4 @@
   b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
 };
 
-&chosen {
-  zephyr,display = &nice_view;
-};
-
-// nice view bus
-&nice_view_spi {
-  status = "okay";
-};
-
-&nice_view {
-  status = "okay";
-};
+// Display configured via nice_view_adapter + nice_epaper shields from zmk-nice-oled module
