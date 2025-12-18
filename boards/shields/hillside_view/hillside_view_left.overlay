@@ -17,10 +17,11 @@
         ;
 };
 
-&left_encoder {
-    status = "okay";
-  a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-  b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
-};
+// Encoder disabled - testing sleep/wake issue
+// &left_encoder {
+//     status = "okay";
+//   a-gpios = <&pro_micro 20 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+//   b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
+// };
 
 // Display configured via nice_view_adapter + nice_epaper shields from zmk-nice-oled module
