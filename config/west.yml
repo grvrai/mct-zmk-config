@@ -13,6 +13,9 @@ manifest:
     # urob - zmk-helpers and zmk-auto-layer
     - name: urob
       url-base: https://github.com/urob
+    # caksoylar - zmk-rgbled-widget for onboard LED indicators
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -45,5 +48,9 @@ manifest:
     # zmk-tri-state - tri-state behavior for app switcher
     - name: zmk-tri-state
       remote: urob
+    # zmk-rgbled-widget - onboard LED power/battery/status indicator
+    - name: zmk-rgbled-widget
+      remote: caksoylar
+      revision: main
   self:
     path: config

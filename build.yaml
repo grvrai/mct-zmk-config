@@ -224,15 +224,15 @@ include:
   ### SOFLEV2 SOFLEV1 SOFLEPLUS END ###
 
   ### TOTEM START ###
-  # Totem 38-key keyboard with Seeeduino XIAO BLE
+  # Totem 38-key keyboard with Seeeduino XIAO BLE + RGB LED power indicator
   - board: seeeduino_xiao_ble
-    shield: totem_left
-    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Totem\"  -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=900000
+    shield: totem_left rgbled_adapter
+    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Totem\"  -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000
     artifact-name: xiao_totem_left
     snippet: studio-rpc-usb-uart
   - board: seeeduino_xiao_ble
-    shield: totem_right
-    cmake-args: -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=900000
+    shield: totem_right rgbled_adapter
+    cmake-args: -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_SLEEP_TIMEOUT=3600000
     artifact-name: xiao_totem_right
   ### TOTEM END ###
 
