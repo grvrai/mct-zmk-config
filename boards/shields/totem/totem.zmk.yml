@@ -6,6 +6,7 @@ url: https://github.com/GEIGEIGEIST/TOTEM
 requires: [pro_micro]
 features:
   - keys
+  - studio
 siblings:
   - totem_left
   - totem_right
