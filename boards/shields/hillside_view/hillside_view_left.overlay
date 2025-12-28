@@ -25,3 +25,8 @@
 // };
 
 // Display configured via nice_view_adapter + nice_epaper shields from zmk-nice-oled module
+
+// Enable trackpad listener on central side to receive events from peripheral
+&trackpad_listener {
+  status = "okay";
+};

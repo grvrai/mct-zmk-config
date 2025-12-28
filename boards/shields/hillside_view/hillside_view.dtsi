@@ -157,6 +157,18 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
     b-gpios = <&pro_micro 21 (GPIO_ACTIVE_HIGH | GPIO_PULL_UP)>;
     steps = <80>;
   };
+
+  // Cirque trackpad input-split for peripheral side pointing
+  trackpad_split: trackpad_split {
+    compatible = "zmk,input-split";
+  };
+
+  // Input listener for Cirque trackpad (enabled on central side)
+  trackpad_listener: trackpad_listener {
+    compatible = "zmk,input-listener";
+    status = "disabled";
+    device = <&trackpad_split>;
+  };
 };
 
 &pinctrl {

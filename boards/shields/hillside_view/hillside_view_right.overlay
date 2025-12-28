@@ -25,4 +25,22 @@
   status = "okay";
 };
 
-// Display configured via nice_view_adapter + nice_epaper shields from zmk-nice-oled module
+// Cirque Trackpad on I2C bus
+// HillsideView FFC connector uses I2C (SDA/SCL) with DR pin
+&pro_micro_i2c {
+  status = "okay";
+
+  glidepoint: glidepoint@2a {
+    compatible = "cirque,pinnacle";
+    reg = <0x2a>;
+    status = "okay";
+    data-ready-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
+    sensitivity = "2x";
+    sleep-mode-enable;
+  };
+};
+
+// Connect trackpad to input-split for relay to central
+&trackpad_split {
+  device = <&glidepoint>;
+};

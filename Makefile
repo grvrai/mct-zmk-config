@@ -313,6 +313,47 @@ corne_urob: only_corne_left_view_urob \
 	settings_reset_urob
 ### CODEBASE_UROB END
 
+### HILLSIDE VIEW START
+keyboard_name_hillside_view= '-DCONFIG_ZMK_KEYBOARD_NAME="HillsideView"'
+shield_hillside_view_left= \
+	    -- -DSHIELD="hillside_view_left nice_epaper" -DZMK_CONFIG="/zmk-config" \
+	    -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=1800000
+shield_hillside_view_right= \
+	    -- -DSHIELD="hillside_view_right nice_epaper" -DZMK_CONFIG="/zmk-config" \
+	    -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=1800000
+uf2_copy_nice_hillside_view_left=/zmk/build/zephyr/zmk.uf2 \
+				firmware/nice_hillside_view_left.uf2
+uf2_copy_nice_hillside_view_right=/zmk/build/zephyr/zmk.uf2 \
+				 firmware/nice_hillside_view_right.uf2
+uf2_chmod_nice_hillside_view_left=chmod go+wrx firmware/nice_hillside_view_left.uf2
+uf2_chmod_nice_hillside_view_right=chmod go+wrx firmware/nice_hillside_view_right.uf2
+
+only_nice_hillside_view_left_urob:
+	docker run --rm ${docker_opts} \
+		${west_built_nice} ${shield_hillside_view_left} \
+		${keyboard_name_hillside_view} ${extra_modules}
+	docker cp ${urob}:${uf2_copy_nice_hillside_view_left}
+	${uf2_chmod_nice_hillside_view_left}
+
+only_nice_hillside_view_right_urob:
+	docker run --rm ${docker_opts} \
+		${west_built_nice} ${shield_hillside_view_right} ${extra_modules}
+	docker cp ${urob}:${uf2_copy_nice_hillside_view_right}
+	${uf2_chmod_nice_hillside_view_right}
+
+hillside_view_urob: only_nice_hillside_view_left_urob only_nice_hillside_view_right_urob
+
+nice_hillside_view_flash_left:
+	@ printf "Waiting for ${nice} bootloader to appear at ${nice_mount}.."
+	@ while [ ! -d ${nice_mount} ]; do sleep 1; printf "."; done; printf "\n"
+	cp -av firmware/nice_hillside_view_left.uf2 ${nice_mount}
+
+nice_hillside_view_flash_right:
+	@ printf "Waiting for ${nice} bootloader to appear at ${nice_mount}.."
+	@ while [ ! -d ${nice_mount} ]; do sleep 1; printf "."; done; printf "\n"
+	cp -av firmware/nice_hillside_view_right.uf2 ${nice_mount}
+### HILLSIDE VIEW END
+
 # Open a shell within the ZMK environment
 shell:
 	docker run --rm ${docker_opts} /bin/bash
