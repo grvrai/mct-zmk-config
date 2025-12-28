@@ -26,7 +26,31 @@
 
 // Display configured via nice_view_adapter + nice_epaper shields from zmk-nice-oled module
 
-// Enable trackpad listener on central side to receive events from peripheral
-&trackpad_listener {
-  status = "okay";
+/ {
+  // Virtual input device on central, receives relayed events from peripheral
+  glidepoint1: virtual_input {
+    compatible = "zmk,virtual-input";
+  };
+
+  // Map relay channel to virtual input device on central
+  input_relay_config_102 {
+    compatible = "zmk,split-peripheral-input-relay";
+
+    // Channel ID matching peripheral relay-channel
+    relay-channel = <102>;
+
+    // Virtual input device to emit events on central
+    device = <&glidepoint1>;
+  };
+
+  // Input listener for the virtual trackpad device
+  tpad_listener {
+    compatible = "zmk,input-listener";
+    device = <&glidepoint1>;
+    // Uncomment to adjust trackpad behavior:
+    // y-invert;
+    // x-invert;
+    // xy-swap;
+    // scale-multiplier = <2>;
+  };
 };

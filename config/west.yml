@@ -16,9 +16,9 @@ manifest:
     # caksoylar - zmk-rgbled-widget for onboard LED indicators
     - name: caksoylar
       url-base: https://github.com/caksoylar
-    # petejohanson - cirque-input-module for Cirque Pinnacle trackpad
-    - name: petejohanson
-      url-base: https://github.com/petejohanson
+    # badjeff - cirque-input-module and split-peripheral-input-relay
+    - name: badjeff
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -57,7 +57,11 @@ manifest:
       revision: main
     # cirque-input-module - Cirque Pinnacle trackpad driver
     - name: cirque-input-module
-      remote: petejohanson
+      remote: badjeff
+      revision: main
+    # zmk-split-peripheral-input-relay - relay input from peripheral to central
+    - name: zmk-split-peripheral-input-relay
+      remote: badjeff
       revision: main
   self:
     path: config

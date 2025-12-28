@@ -25,22 +25,28 @@
   status = "okay";
 };
 
-// Cirque Trackpad on I2C bus
-// HillsideView FFC connector uses I2C (SDA/SCL) with DR pin
-&pro_micro_i2c {
+// Enable I2C bus and Cirque trackpad on peripheral side
+&i2c0 {
   status = "okay";
-
-  glidepoint: glidepoint@2a {
-    compatible = "cirque,pinnacle";
-    reg = <0x2a>;
+  glidepoint0: glidepoint@2a {
     status = "okay";
-    dr-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
-    sensitivity = "2x";
-    sleep;
   };
 };
 
-// Connect trackpad to input-split for relay to central
-&trackpad_split {
-  device = <&glidepoint>;
+/ {
+  // Virtual input for keymap binding (nothing happens on peripheral side)
+  glidepoint1: virtual_input {
+    compatible = "zmk,virtual-input";
+  };
+
+  // Relay trackpad input from peripheral to central
+  input_relay_config_102 {
+    compatible = "zmk,split-peripheral-input-relay";
+
+    // Peripheral side input device to intercept
+    device = <&glidepoint0>;
+
+    // Channel ID for event transmission (8-bit: 1-255)
+    relay-channel = <102>;
+  };
 };
