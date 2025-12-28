@@ -16,6 +16,9 @@ manifest:
     # caksoylar - zmk-rgbled-widget for onboard LED indicators
     - name: caksoylar
       url-base: https://github.com/caksoylar
+    # petejohanson - cirque-input-module for Cirque Pinnacle trackpad
+    - name: petejohanson
+      url-base: https://github.com/petejohanson
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -51,6 +54,10 @@ manifest:
     # zmk-rgbled-widget - onboard LED power/battery/status indicator
     - name: zmk-rgbled-widget
       remote: caksoylar
+      revision: main
+    # cirque-input-module - Cirque Pinnacle trackpad driver
+    - name: cirque-input-module
+      remote: petejohanson
       revision: main
   self:
     path: config
