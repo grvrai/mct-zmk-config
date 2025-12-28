@@ -27,3 +27,17 @@ config ZMK_RGB_UNDERGLOW
 # Widgets: WPM, Luna animation, HID indicators, modifiers, layer status
 
 endif # SHIELD_HILLSIDE_VIEW_LEFT || SHIELD_HILLSIDE_VIEW_RIGHT
+
+if SHIELD_HILLSIDE_VIEW_RIGHT
+
+# Cirque Pinnacle trackpad support
+config ZMK_POINTING
+    default y
+
+config INPUT
+    default y
+
+config I2C
+    default y
+
+endif # SHIELD_HILLSIDE_VIEW_RIGHT

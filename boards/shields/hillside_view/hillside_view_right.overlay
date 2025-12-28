@@ -31,7 +31,7 @@
   status = "okay";
 
   glidepoint: glidepoint@2a {
-    compatible = "cirque,pinnacle";
+    compatible = "cirque,pinnacle-i2c";
     reg = <0x2a>;
     status = "okay";
     data-ready-gpios = <&pro_micro 0 GPIO_ACTIVE_HIGH>;
