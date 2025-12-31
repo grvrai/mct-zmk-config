@@ -249,6 +249,19 @@ include:
     artifact-name: nice_chocofi_right_view
   ### CHOCOFI END ###
 
+  ### KLOR START ###
+  # KLOR 42-key split keyboard with nice!nano v2 + OLED displays (128x32)
+  - board: nice_nano_v2
+    shield: klor_left
+    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Klor\"  -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=900000
+    artifact-name: nice_klor_left_oled
+    snippet: studio-rpc-usb-uart
+  - board: nice_nano_v2
+    shield: klor_right
+    cmake-args: -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=900000
+    artifact-name: nice_klor_right_oled
+  ### KLOR END ###
+
   ### HILLSIDE VIEW START ###
   # Hillside View 46-key split keyboard with nice!nano v2 + nice_view + Cirque trackpad
   # Left: nice_view display using zmk-nice-oled module (nice_epaper shield)
