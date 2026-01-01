@@ -24,10 +24,10 @@ manifest:
       remote: zmkfirmware
       revision: v0.3.0
       import: app/west.yml
-    # dongle_display
+    # dongle_display (v0.3 branch for ZMK v0.3.0 compatibility)
     - name: zmk-dongle-display
       remote: englmaxi
-      revision: main
+      revision: v0.3
     # nice_oled - nice_epaper - nice_custom (main for latest features)
     - name: zmk-nice-oled
       remote: mctechnology17
