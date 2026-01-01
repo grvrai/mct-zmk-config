@@ -28,10 +28,10 @@ manifest:
     - name: zmk-dongle-display
       remote: englmaxi
       revision: main
-    # nice_oled - nice_epaper (v0.0.2 for ZMK v0.3.0)
+    # nice_oled - nice_epaper - nice_custom (main for latest features)
     - name: zmk-nice-oled
       remote: mctechnology17
-      revision: v0.0.2
+      revision: main
     # dongle_display!view
     - name: zmk-dongle-display-view
       remote: mctechnology17

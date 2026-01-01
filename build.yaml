@@ -250,8 +250,8 @@ include:
   ### CHOCOFI END ###
 
   ### KLOR START ###
-  # KLOR 42-key split keyboard with nice!nano v2 + zmk-nice-oled widgets
-  # Left: 128x64 OLED with nice_oled widgets, Right: 128x32 OLED with nice_oled widgets
+  # KLOR 42-key split keyboard with nice!nano v2 + zmk-nice-oled vertical widgets
+  # Left: 128x64 OLED, Right: 128x32 OLED
   - board: nice_nano_v2
     shield: klor_left nice_oled
     cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Klor\"  -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=900000
