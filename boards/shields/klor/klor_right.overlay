@@ -29,4 +29,6 @@
     height = <32>;
     multiplex-ratio = <31>;
     com-sequential;
+    segment-remap;
+    com-invdir;
 };
