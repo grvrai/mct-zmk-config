@@ -23,8 +23,3 @@
 &right_encoder {
     status = "okay";
 };
-
-/* Right side OLED uses I2C address 0x3d based on testing */
-&oled {
-    reg = <0x3d>;
-};
