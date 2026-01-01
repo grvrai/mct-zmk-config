@@ -21,7 +21,7 @@ if ZMK_DISPLAY
 config I2C
     default y
 
-config SH1106
+config SSD1306
     default y
 
 endif # ZMK_DISPLAY
