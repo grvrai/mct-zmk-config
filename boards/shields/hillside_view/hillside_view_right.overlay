@@ -54,6 +54,10 @@
 
 &i2c0 {
   status = "okay";
+  pinctrl-0 = <&i2c0_default>;
+  pinctrl-1 = <&i2c0_sleep>;
+  pinctrl-names = "default", "sleep";
+
   glidepoint0: glidepoint@2a {
       status = "okay";
   };
