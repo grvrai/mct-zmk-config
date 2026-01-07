@@ -169,6 +169,17 @@ make clean_all      # Complete cleanup
 
 The `build.yaml` file controls GitHub Actions builds. Enable/disable specific keyboard builds by commenting/uncommenting entries. Artifacts are downloaded from the Actions tab after successful builds.
 
+**Downloading firmware artifacts:**
+When downloading firmware from GitHub Actions, always download to the `firmware/` directory:
+```bash
+gh run download <run_id> -n <artifact_name> -D firmware/ -R grvrai/mct-zmk-config
+```
+Example:
+```bash
+gh run download 20790051567 -n artifact-nice_hillside_view_left -D firmware/ -R grvrai/mct-zmk-config
+gh run download 20790051567 -n artifact-nice_hillside_view_right -D firmware/ -R grvrai/mct-zmk-config
+```
+
 ## Architecture
 
 ### Repository Structure
