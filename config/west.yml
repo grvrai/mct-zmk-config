@@ -22,7 +22,7 @@ manifest:
   projects:
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3.0
+      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
       import: app/west.yml
     # dongle_display (v0.3 branch for ZMK v0.3.0 compatibility)
     - name: zmk-dongle-display
@@ -44,10 +44,10 @@ manifest:
     - name: zmk-helpers
       remote: urob
       revision: main
-    # zmk-auto-layer - numword behavior
-    - name: zmk-auto-layer
-      remote: urob
-      revision: v0.3.0
+    # zmk-auto-layer - numword behavior (disabled - incompatible with newer ZMK)
+    # - name: zmk-auto-layer
+    #   remote: urob
+    #   revision: v0.3.0
     # zmk-tri-state - tri-state behavior for app switcher
     - name: zmk-tri-state
       remote: urob
