@@ -44,12 +44,6 @@
 //   zephyr,display = &nice_view;
 // };
 
-// Explicitly disable spi0/nice_view_spi to avoid conflict with i2c0
-// (Both use the same underlying nRF52 peripheral - SPIM0/TWIM0)
-&nice_view_spi {
-  status = "disabled";
-};
-
 &i2c0 {
   status = "okay";
   glidepoint0: glidepoint@2a {

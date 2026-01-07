@@ -105,14 +105,17 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 };
 
 &pinctrl {
-  spi0_default: spi0_default {
+  // Use spi1 for display (not spi0) to avoid conflict with i2c0
+  // spi0/i2c0 share hardware peripheral at 0x40003000
+  // spi1/i2c1 share hardware peripheral at 0x40004000
+  spi1_default: spi1_default {
     group1 {
       psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
         <NRF_PSEL(SPIM_MOSI, 0, 17)>,
         <NRF_PSEL(SPIM_MISO, 0, 25)>;
     };
   };
-  spi0_sleep: spi0_sleep {
+  spi1_sleep: spi1_sleep {
     group1 {
       psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
         <NRF_PSEL(SPIM_MOSI, 0, 17)>,
@@ -210,11 +213,11 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 // 	};
 // };
 
-// nice_view_spi bus - display node provided by nice_epaper shield from zmk-nice-oled module
-nice_view_spi: &spi0 {
+// nice_view_spi bus - use spi1 (not spi0) to avoid conflict with i2c0 for Cirque
+nice_view_spi: &spi1 {
   compatible = "nordic,nrf-spim";
-  pinctrl-0 = <&spi0_default>;
-  pinctrl-1 = <&spi0_sleep>;
+  pinctrl-0 = <&spi1_default>;
+  pinctrl-1 = <&spi1_sleep>;
   pinctrl-names = "default", "sleep";
   cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
 };
