@@ -8,10 +8,12 @@
 #include <zmk-helpers/helper.h>
 #include <zmk-helpers/key-labels/hillside46.h>
 #include <behaviors.dtsi>
+#include <behaviors/mouse_keys.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
 #include <dt-bindings/zmk/outputs.h>
 #include <dt-bindings/zmk/ext_power.h>
+#include <dt-bindings/zmk/mouse.h>
 
 // Layer definitions
 #define BASE 0
@@ -21,6 +23,7 @@
 #define FUN 4
 #define GAME 5
 #define SYS 6
+#define SCROLL 7
 
 // Key position groups for positional hold-tap (46-key Hillside View layout)
 // See: https://github.com/urob/zmk-helpers/blob/main/include/zmk-helpers/key-labels/hillside46.h
@@ -118,7 +121,7 @@
 &kp TAB    &kp Q          &kp W        &kp E         &kp R         &kp T                                   &kp Y         &kp U           &kp I         &kp O        &kp P            &kp BSPC
 &kp ESC    &hml LCTRL A   &hml LALT S  &hml LGUI D   &hml LSHFT F  &kp G                                   &kp H         &hmr RSHFT J    &hmr RGUI K   &hmr RALT L  &hmr RCTRL SEMI  &kp SQT
 &kp LSHFT  &kp Z          &kp X        &kp C         &kp V         &kp B                                   &kp N         &kp M           &kp COMMA     &kp DOT      &kp FSLH         &kp RSHFT
-                                                                          &kp C_MUTE            &kp C_PP
+                                                                          &kp C_MUTE            &mo SCROLL
                           &kp ESC      &lt NAV RET   &kp TAB       &kp LSHFT                     &kp RSHFT &lt SYM SPACE &smart_num NUM 0 &lt FUN DEL
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
@@ -199,6 +202,19 @@
 &trans       &trans        &trans        &trans        &to BASE      &ext_power EP_TOG               &out OUT_TOG  &bt BT_SEL 0    &bt BT_SEL 1    &bt BT_SEL 2    &bt BT_SEL 3 &bootloader
                                                                                   &trans      &trans
                            &trans        &trans        &trans        &trans                   &trans &trans        &trans          &trans
+            >;
+            sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
+        };
+
+        // SCROLL LAYER - Trackpad becomes scroll wheel (hold key to activate)
+        scroll_layer {
+            display-name = "SCROLL";
+            bindings = <
+&trans       &trans        &trans        &trans        &trans        &trans                          &trans        &trans          &trans          &trans          &trans       &trans
+&trans       &trans        &trans        &trans        &trans        &trans                          &trans        &mkp RCLK       &mkp MCLK       &mkp LCLK       &trans       &trans
+&trans       &trans        &trans        &trans        &trans        &trans                          &trans        &trans          &trans          &trans          &trans       &trans
+                                                                                  &trans      &trans
+                           &trans        &trans        &trans        &trans                   &trans &mkp LCLK     &mkp RCLK       &trans
             >;
             sensor-bindings = <&inc_dec_kp C_VOL_UP C_VOL_DN &inc_dec_kp PG_UP PG_DN>;
         };

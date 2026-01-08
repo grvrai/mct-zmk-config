@@ -5,6 +5,7 @@
  */
 
 #include "hillside_view.dtsi"
+#include <dt-bindings/zmk/input_transform.h>
 
 &kscan0  {
     col-gpios
@@ -37,8 +38,7 @@
 };
 
 / {
-    /* define virtual input, will be resurrected for emitting input event */
-	/* NOTE: set `device = <&glidepoint1>` in `zmk,input-listener` */
+	/* define virtual input, will be resurrected for emitting input event */
 	glidepoint1: virtual_input {
 		compatible = "zmk,virtual-input";
 	};
@@ -46,12 +46,49 @@
 	/* for central side, define (relay-channel)-to-(virtual-input) mapping */
 	input_relay_config_102 {
 		compatible = "zmk,split-peripheral-input-relay";
-
-		/* channel id, used to filter incoming input event from split peripheral */
-		/* NOTE: should matching relay-channel on peripheral overlay */
 		relay-channel = <102>;
-
-		/* virtual input device on central, which used to emit input event as an agent device */
 		device = <&glidepoint1>;
+	};
+
+	/* Mouse movement config - default layer */
+	tpad_move_listener {
+		compatible = "zmk,input-behavior-listener";
+		device = <&glidepoint1>;
+		layers = <0 1 2 3 4 5 6>;  /* All layers except scroll layer */
+
+		evt-type = <INPUT_EV_REL>;
+		x-input-code = <INPUT_REL_X>;
+		y-input-code = <INPUT_REL_Y>;
+
+		/* Scale: reduce sensitivity (higher divisor = slower cursor) */
+		scale-multiplier = <1>;
+		scale-divisor = <1>;
+
+		/* Optional: invert Y axis if needed */
+		// y-invert;
+	};
+
+	/* Mouse scroll config - activated by layer or behavior */
+	tpad_scroll_listener {
+		compatible = "zmk,input-behavior-listener";
+		device = <&glidepoint1>;
+		layers = <7>;  /* Scroll layer (add SCROLL layer to keymap) */
+
+		evt-type = <INPUT_EV_REL>;
+		x-input-code = <INPUT_REL_MISC>;  /* Silence X for scroll */
+		y-input-code = <INPUT_REL_WHEEL>;
+
+		y-invert;  /* Natural scrolling */
+
+		/* Smooth scrolling with accumulator */
+		bindings = <&ib_wheel_scaler 1 8>;
+	};
+
+	/* Scroll scaler for smooth scrolling */
+	ib_wheel_scaler: ib_wheel_scaler {
+		compatible = "zmk,input-behavior-scaler";
+		#binding-cells = <2>;
+		evt-type = <INPUT_EV_REL>;
+		input-code = <INPUT_REL_WHEEL>;
 	};
 };
