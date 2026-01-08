@@ -21,46 +21,53 @@
     ;
 };
 
-&right_encoder {
-  status = "okay";
-};
+// &right_encoder {
+//   status = "okay";
+// };
 
-&chosen {
-  zephyr,display = &nice_view;
-};
+// trackball bus
+/* &spi0 { */
+/*   status = "okay"; */
+/*   sck-pin = <20>; */
+/*   mosi-pin = <17>; */
+/*   miso-pin = <17>; // same as mosi (3-wire spi) */
+/*   cs-gpios = <&gpio0 22 GPIO_ACTIVE_LOW>; */
+/* }; */
 
-&nice_view_spi {
-  status = "okay";
-};
+/* &trackball { */
+/*   status = "okay"; */
+/*   irq-gpios = <&gpio0 24 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>; */
+/* }; */
 
-&nice_view {
-  status = "okay";
-};
+
+// &chosen {
+//   zephyr,display = &nice_view;
+// };
 
 &i2c0 {
-    status = "okay";
-    glidepoint0: glidepoint@2a {
-        status = "okay";
-    };
+  status = "okay";
+  glidepoint0: glidepoint@2a {
+      status = "okay";
+  };
 };
 
 / {
     /* THIS only makes keymap binding happy, nothing happens on peripheral side */
-	glidepoint1: virtual_input {
+  glidepoint1: virtual_input {
 		compatible = "zmk,virtual-input";
 	};
 
-    input_relay_config_102 {
-        compatible = "zmk,split-peripheral-input-relay";
+  input_relay_config_102 {
+    compatible = "zmk,split-peripheral-input-relay";
 
-        /* peripheral side input device, used to... */
-		/*  - be intecepted on peripheral; */
-		/*  - and then, be resurrected as `zmk,virtual-device` on central; */
-        device = <&glidepoint0>;
+    /* peripheral side input device, used to... */
+    /*  - be intecepted on peripheral; */
+    /*  - and then, be resurrected as `zmk,virtual-device` on central; */
+    device = <&glidepoint0>;
 
-        /* channel id, used to be be transfered along with all input events. */
-		/* NOTE 1: pick any 8bit integer. (1 - 255) */
-		/* NOTE 2: should matching relay-channel on central overlay */
-		relay-channel = <102>;
-    };
+    /* channel id, used to be be transfered along with all input events. */
+    /* NOTE 1: pick any 8bit integer. (1 - 255) */
+    /* TE 2: should matching relay-channel on central overlay */
+    relay-channel = <102>;
+  };
 };

@@ -1,60 +1,67 @@
 manifest:
+  defaults:
+    revision: v0.1
   remotes:
     - name: zmkfirmware
       url-base: https://github.com/zmkfirmware
-    - name: badjeff
-      url-base: https://github.com/badjeff
+    # dongle_display
+    - name: englmaxi
+      url-base: https://github.com/englmaxi
+    # nice_oled - nice_epaper - dongle_display!view - oled Adapter
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
+    # urob - zmk-helpers and zmk-auto-layer
     - name: urob
       url-base: https://github.com/urob
+    # caksoylar - zmk-rgbled-widget for onboard LED indicators
+    - name: caksoylar
+      url-base: https://github.com/caksoylar
+    # badjeff - cirque-input-module and split-peripheral-input-relay
+    - name: badjeff
+      url-base: https://github.com/badjeff
   projects:
     - name: zmk
-      remote: badjeff
-      revision: feat/pointers-move-scroll
+      remote: zmkfirmware
+      revision: abb64ba316c29caddc49727ca2cac2f0ed5970c7
       import: app/west.yml
-    - name: zmk-adns9800-driver
-      remote: badjeff
+    # dongle_display (v0.3 branch for ZMK v0.3.0 compatibility)
+    - name: zmk-dongle-display
+      remote: englmaxi
+      revision: v0.3
+    # nice_oled - nice_epaper - nice_custom (main for latest features)
+    - name: zmk-nice-oled
+      remote: mctechnology17
       revision: main
-    - name: zmk-pmw3610-driver
-      remote: badjeff
+    # dongle_display!view
+    - name: zmk-dongle-display-view
+      remote: mctechnology17
       revision: main
-    - name: zmk-analog-input-driver
-      remote: badjeff
+    # oled Adapter
+    - name: zmk-oled-adapter
+      remote: mctechnology17
       revision: main
-    - name: zmk-behavior-insomnia
-      remote: badjeff
+    # zmk-helpers - convenience macros
+    - name: zmk-helpers
+      remote: urob
       revision: main
-    - name: zmk-behavior-key-tempo
-      remote: badjeff
+    # zmk-auto-layer - numword behavior (disabled - incompatible with newer ZMK)
+    # - name: zmk-auto-layer
+    #   remote: urob
+    #   revision: v0.3.0
+    # zmk-tri-state - tri-state behavior for app switcher
+    - name: zmk-tri-state
+      remote: urob
+    # zmk-rgbled-widget - onboard LED power/battery/status indicator
+    - name: zmk-rgbled-widget
+      remote: caksoylar
       revision: main
-    - name: zmk-behavior-mouse-key-toggle
-      remote: badjeff
-      revision: main
-    - name: zmk-input-behavior-listener
-      remote: badjeff
-      revision: main
-    - name: zmk-output-behavior-listener
-      remote: badjeff
-      revision: main
-    - name: zmk-hid-io
-      remote: badjeff
-      revision: main
-    - name: zmk-split-peripheral-input-relay
-      remote: badjeff
-      revision: main
-    - name: zmk-split-peripheral-output-relay
-      remote: badjeff
-      revision: main
-    - name: zmk-split-peripheral-bonding-tweak
-      remote: badjeff
-      revision: main
-    - name: zmk-kscan-blackout
-      remote: badjeff
-      revision: main
+    # cirque-input-module - Cirque Pinnacle trackpad driver
     - name: cirque-input-module
       remote: badjeff
       revision: main
-    - name: zmk-helpers
-      remote: urob
+    # zmk-split-peripheral-input-relay - relay input from peripheral to central
+    - name: zmk-split-peripheral-input-relay
+      remote: badjeff
       revision: main
   self:
     path: config

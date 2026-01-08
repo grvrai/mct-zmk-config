@@ -6,11 +6,20 @@
 
 #include <dt-bindings/zmk/matrix_transform.h>
 #include <dt-bindings/led/led.h>
+#include "layouts.dtsi"
+
+&hsv_6col_layout {
+  transform = <&default_transform>;
+};
+
+&hsv_5col_layout {
+  transform = <&five_column_transform>;
+};
 
 / {
   chosen: chosen {
     zmk,kscan = &kscan0;
-    zmk,matrix_transform = &default_transform;
+    zmk,physical-layout = &hsv_6col_layout;
     zmk,underglow = &led_strip;
   };
 
@@ -30,6 +39,7 @@ RC(2,0) RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                 
                                                 RC(3,5)                       RC(3,6)
                                 RC(3,1) RC(3,2) RC(3,3) RC(3,4)       RC(3,7) RC(3,8) RC(3,9) RC(3,10)
     >;
+
   };
 
   five_column_transform: keymap_transform_1 {
@@ -95,6 +105,9 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 };
 
 &pinctrl {
+  // Use spi1 for display (not spi0) to avoid conflict with i2c0
+  // spi0/i2c0 share hardware peripheral at 0x40003000
+  // spi1/i2c1 share hardware peripheral at 0x40004000
   spi1_default: spi1_default {
     group1 {
       psels = <NRF_PSEL(SPIM_SCK, 0, 20)>,
@@ -122,7 +135,7 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
       low-power-enable;
     };
   };
-
+  
   i2c0_default: i2c0_default {
     group1 {
       psels = <NRF_PSEL(TWIM_SDA, 1, 0)>,
@@ -164,32 +177,47 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 };
 
 &i2c0 {
+  compatible = "nordic,nrf-twi";
+  status = "disabled";
+  pinctrl-0 = <&i2c0_default>;
+  pinctrl-1 = <&i2c0_sleep>;
+  pinctrl-names = "default", "sleep";
+
+  glidepoint0: glidepoint@2a {
+    compatible = "cirque,pinnacle";
+    reg = <0x2a>;
     status = "disabled";
-    glidepoint0: glidepoint@2a {
-        compatible = "cirque,pinnacle";
-        reg = <0x2a>;
-        status = "disabled";
-        dr-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH)>;
+    dr-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH)>;
 
-        sensitivity = "1x";
-        sleep;
-        // no-taps;
-    };
-
+    sensitivity = "1x";
+    sleep;
+    // no-taps;
+  };
 };
 
+// / {
+// 	/* assign `input-listener` to all pointing devices */
+// 	/* &glidepoint0 on central, &glidepoint1 on peripheral */
+//     tpad_central_listener {
+//         compatible = "zmk,input-listener";
+//         device = <&glidepoint0>;
+// 	};
+
+//     tpad_peripheral_listener {
+//         compatible = "zmk,input-listener";
+//         device = <&glidepoint1>;
+//         y-invert;
+//         // xy-swap;
+//         // x-invert;
+//         scale-multiplier = <3>;
+// 	};
+// };
+
+// nice_view_spi bus - use spi1 (not spi0) to avoid conflict with i2c0 for Cirque
 nice_view_spi: &spi1 {
   compatible = "nordic,nrf-spim";
   pinctrl-0 = <&spi1_default>;
   pinctrl-1 = <&spi1_sleep>;
   pinctrl-names = "default", "sleep";
   cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
-
-  nice_view: ls0xx@0 {
-    compatible = "sharp,ls0xx";
-    spi-max-frequency = <1000000>;
-    reg = <0>;
-    width = <160>;
-    height = <68>;
-  };
 };
