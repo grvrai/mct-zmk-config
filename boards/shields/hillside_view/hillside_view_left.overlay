@@ -64,8 +64,8 @@
 		scale-multiplier = <1>;
 		scale-divisor = <1>;
 
-		/* Optional: invert Y axis if needed */
-		// y-invert;
+		/* Invert Y axis for correct trackpad orientation */
+		y-invert;
 	};
 
 	/* Mouse scroll config - activated by layer or behavior */
