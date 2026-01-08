@@ -265,17 +265,14 @@ include:
 
   ### HILLSIDE VIEW START ###
   # Hillside View 46-key split keyboard with nice!nano v2 + nice_view + Cirque trackpad
-  # Left: nice_view display using zmk-nice-oled module (nice_epaper shield)
-  # Right: Cirque trackpad on I2C (no display)
-  # NOTE: Don't use nice_view_adapter - hillside_view.dtsi already defines nice_view_spi with correct CS pin (gpio0 22)
+  # Uses badjeff's ZMK fork with pointer support (feat/pointers-move-scroll branch)
+  # Left: nice_view display (central side)
+  # Right: Cirque trackpad on I2C (peripheral side, no display)
   - board: nice_nano_v2
-    shield: hillside_view_left nice_epaper
-    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"HillsideView\" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=1800000
+    shield: hillside_view_left nice_view
     artifact-name: nice_hillside_view_left
-    snippet: studio-rpc-usb-uart
   - board: nice_nano_v2
-    shield: hillside_view_right
-    cmake-args: -DCONFIG_ZMK_SLEEP=y -DCONFIG_ZMK_IDLE_TIMEOUT=1800000
+    shield: hillside_view_right nice_view
     artifact-name: nice_hillside_view_right
   ### HILLSIDE VIEW END ###
 
