@@ -180,6 +180,15 @@ gh run download 20790051567 -n artifact-nice_hillside_view_left -D firmware/ -R 
 gh run download 20790051567 -n artifact-nice_hillside_view_right -D firmware/ -R grvrai/mct-zmk-config
 ```
 
+**IMPORTANT - Firmware Download Workflow:**
+When triggering GitHub Actions builds (via git push), always download the firmware after the build completes:
+1. Push changes to trigger the build
+2. Wait for the build to complete (check with `gh run list --branch <branch> -R grvrai/mct-zmk-config`)
+3. Remove old firmware files first to avoid conflicts: `rm -f firmware/<artifact>.uf2`
+4. Download the new firmware artifacts to `firmware/`
+
+This ensures the user always has the latest firmware ready to flash.
+
 ## Architecture
 
 ### Repository Structure
