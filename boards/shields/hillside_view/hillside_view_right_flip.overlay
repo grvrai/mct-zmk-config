@@ -16,14 +16,14 @@
 };
 
 &kscan0 {
-    /* Reversed column order from original RIGHT overlay to account for PCB flip */
+    /* Same column order as original RIGHT - flipping PCB doesn't change electrical routing */
     col-gpios
-        = <&gpio1 7 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+        = <&pro_micro 10 GPIO_ACTIVE_HIGH>
         , <&pro_micro 16 GPIO_ACTIVE_HIGH>
-        , <&pro_micro 10 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 14 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 15 GPIO_ACTIVE_HIGH>
+        , <&pro_micro 18 GPIO_ACTIVE_HIGH>
+        , <&gpio1 7 GPIO_ACTIVE_HIGH>
         ;
 };
 
