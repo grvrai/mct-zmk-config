@@ -6,12 +6,11 @@
  * FLIPPED LAYOUT - RIGHT/PERIPHERAL side
  * - Uses original RIGHT PCB (flipped, MCU on top, sockets on opposite side)
  * - Cirque trackpad on I2C, relays to central via BLE
- * - Column GPIOs reversed to account for physical flip
  *
- * I2C pins from HillSideView schematic:
- * - SCL = P1.11 (nice!nano D14)
- * - SDA = P1.13 (nice!nano D15)
- * - DR  = P0.29 (nice!nano D20)
+ * I2C pins from PCB (same for both top and bottom FFC - shared nets):
+ * - SCL = P0.24 (D5)
+ * - SDA = P1.0 (D6)
+ * - DR  = P1.2
  */
 
 #include "hillside_view.dtsi"
@@ -36,30 +35,11 @@
     status = "okay";
 };
 
-/* Override I2C pinctrl with correct pins from HillSideView schematic */
-&pinctrl {
-    i2c0_default: i2c0_default {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 1, 13)>,
-                    <NRF_PSEL(TWIM_SCL, 1, 11)>;
-        };
-    };
-
-    i2c0_sleep: i2c0_sleep {
-        group1 {
-            psels = <NRF_PSEL(TWIM_SDA, 1, 13)>,
-                    <NRF_PSEL(TWIM_SCL, 1, 11)>;
-            low-power-enable;
-        };
-    };
-};
-
-/* Cirque trackpad on I2C with correct DR pin */
+/* Cirque trackpad on I2C */
 &i2c0 {
     status = "okay";
     glidepoint0: glidepoint@2a {
         status = "okay";
-        dr-gpios = <&gpio0 29 GPIO_ACTIVE_HIGH>;
     };
 };
 
