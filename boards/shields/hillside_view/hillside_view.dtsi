@@ -178,6 +178,18 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 
 };
 
-/* nice_view_spi is now provided by nice_view_adapter shield
- * which uses SPI0 on nice_nano with standard pro_micro pins
- * Removed custom SPI1 definition to avoid label conflict */
+nice_view_spi: &spi1 {
+  compatible = "nordic,nrf-spim";
+  pinctrl-0 = <&spi1_default>;
+  pinctrl-1 = <&spi1_sleep>;
+  pinctrl-names = "default", "sleep";
+  cs-gpios = <&gpio0 22 GPIO_ACTIVE_HIGH>;
+
+  nice_view: ls0xx@0 {
+    compatible = "sharp,ls0xx";
+    spi-max-frequency = <1000000>;
+    reg = <0>;
+    width = <160>;
+    height = <68>;
+  };
+};
