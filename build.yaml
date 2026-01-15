@@ -283,7 +283,7 @@ include:
   # - Right (peripheral): Cirque trackpad on I2C
   # - Column GPIOs reversed to account for physical PCB flip
   - board: nice_nano_v2
-    shield: hillside_view_left_flip nice_view
+    shield: hillside_view_left_flip nice_epaper
     artifact-name: nice_hillside_view_left_flip
   - board: nice_nano_v2
     shield: hillside_view_right_flip
