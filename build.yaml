@@ -265,26 +265,30 @@ include:
 
   ### HILLSIDE VIEW START ###
   # Hillside View 46-key split keyboard with nice!nano v2 + nice_view + Cirque trackpad
-  # Uses badjeff's ZMK fork with pointer support (feat/pointers-move-scroll branch)
-  # NOTE: ZMK Studio not available - badjeff's fork doesn't have studio-rpc-usb-uart snippet
+  # Uses MAINLINE ZMK with native pointing device support (Zephyr 4.1+)
+  # ZMK Studio enabled for runtime keymap editing
   #
   # NORMAL LAYOUT (MCU underneath):
   # - Left: nice_view display (central side)
   # - Right: Cirque trackpad on I2C (peripheral side)
   # - board: nice_nano_v2
   #   shield: hillside_view_left nice_view
+  #   cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"HSV\" -DCONFIG_ZMK_STUDIO=y
   #   artifact-name: nice_hillside_view_left
+  #   snippet: studio-rpc-usb-uart
   # - board: nice_nano_v2
   #   shield: hillside_view_right
   #   artifact-name: nice_hillside_view_right
   #
   # FLIPPED LAYOUT (MCU on top - solder sockets on opposite side of each PCB):
-  # - Left (central): Display, receives Cirque via BLE relay
+  # - Left (central): Display, receives Cirque via input-split
   # - Right (peripheral): Cirque trackpad on I2C
   # - Column GPIOs reversed to account for physical PCB flip
   - board: nice_nano_v2
     shield: hillside_view_left_flip nice_epaper
+    cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"HSV\" -DCONFIG_ZMK_STUDIO=y
     artifact-name: nice_hillside_view_left_flip
+    snippet: studio-rpc-usb-uart
   - board: nice_nano_v2
     shield: hillside_view_right_flip
     artifact-name: nice_hillside_view_right_flip
