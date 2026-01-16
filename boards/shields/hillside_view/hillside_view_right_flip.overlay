@@ -16,7 +16,6 @@
  */
 
 #include "hillside_view.dtsi"
-#include <dt-bindings/zmk/input_transform.h>
 
 &default_transform {
     col-offset = <6>;
@@ -50,6 +49,4 @@
 /* Connect the physical Cirque device to the input-split for relay to central */
 &glidepoint_split {
     device = <&glidepoint0>;
-    /* Y-invert to correct orientation - transform applied before BLE relay */
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 };
