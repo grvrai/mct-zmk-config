@@ -12,6 +12,7 @@
 
 #include "hillside_view.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
+#include <input/processors.dtsi>
 
 &kscan0 {
     /* Same column order as original LEFT - flipping PCB doesn't change electrical routing */
