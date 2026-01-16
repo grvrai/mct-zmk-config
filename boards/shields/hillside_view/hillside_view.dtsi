@@ -165,41 +165,17 @@ RC(2,1) RC(2,2) RC(2,3) RC(2,4) RC(2,5)                                       RC
 
 &i2c0 {
     status = "disabled";
-    pinctrl-0 = <&i2c0_default>;
-    pinctrl-1 = <&i2c0_sleep>;
-    pinctrl-names = "default", "sleep";
-
     glidepoint0: glidepoint@2a {
         compatible = "cirque,pinnacle";
         reg = <0x2a>;
         status = "disabled";
-        /* Mainline ZMK property names (Zephyr 4.1+) */
-        data-ready-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH)>;
+        dr-gpios = <&gpio1 2 (GPIO_ACTIVE_HIGH)>;
+
         sensitivity = "1x";
-        sleep-mode-enable;
-        invert-y;  /* Correct Y orientation */
-        // primary-tap-enable;  /* Enable if you want tap-to-click */
-    };
-};
-
-/ {
-    /* Input split for relaying Cirque events from peripheral to central */
-    split_inputs {
-        #address-cells = <1>;
-        #size-cells = <0>;
-
-        glidepoint_split: glidepoint_split@0 {
-            compatible = "zmk,input-split";
-            reg = <0>;
-        };
+        sleep;
+        // no-taps;
     };
 
-    /* Input listener on central - processes events from the split */
-    glidepoint_listener: glidepoint_listener {
-        compatible = "zmk,input-listener";
-        status = "disabled";
-        device = <&glidepoint_split>;
-    };
 };
 
 nice_view_spi: &spi1 {
