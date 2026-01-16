@@ -13,8 +13,6 @@
  */
 
 #include "hillside_view.dtsi"
-#include <zephyr/dt-bindings/input/input-event-codes.h>
-#include <dt-bindings/zmk/input_transform.h>
 
 &kscan0 {
     /* Same column order as original LEFT - flipping PCB doesn't change electrical routing */
@@ -50,6 +48,4 @@
 /* Enable the input listener on central to process Cirque events from peripheral */
 &glidepoint_listener {
     status = "okay";
-    /* Y-invert to correct orientation */
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 };
