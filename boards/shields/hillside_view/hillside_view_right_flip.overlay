@@ -5,7 +5,7 @@
  *
  * FLIPPED LAYOUT - RIGHT/PERIPHERAL side
  * - Uses original RIGHT PCB (flipped, MCU on top, sockets on opposite side)
- * - Cirque trackpad on I2C, relays to central via BLE
+ * - Cirque trackpad on I2C, relays to central via BLE split
  *
  * I2C pins from PCB (same for both top and bottom FFC - shared nets):
  * - SCL = P0.24 (D5)
@@ -43,16 +43,7 @@
     };
 };
 
-/ {
-    /* Dummy virtual input for keymap binding compatibility */
-    glidepoint1: virtual_input {
-        compatible = "zmk,virtual-input";
-    };
-
-    /* Relay Cirque input to central */
-    input_relay_config_102 {
-        compatible = "zmk,split-peripheral-input-relay";
-        device = <&glidepoint0>;
-        relay-channel = <102>;
-    };
+/* Connect the split input to the actual Cirque device */
+&glidepoint_split {
+    device = <&glidepoint0>;
 };
