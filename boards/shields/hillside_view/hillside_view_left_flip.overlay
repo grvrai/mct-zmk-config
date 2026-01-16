@@ -51,5 +51,5 @@
 &glidepoint_listener {
     status = "okay";
     /* Y-invert to correct orientation */
-    input-processors = <&zip_y_invert>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 };
