@@ -9,11 +9,11 @@ manifest:
     - name: mctechnology17
       url-base: https://github.com/mctechnology17
   projects:
-    # ZMK core - pinned to v0.3.0 for zmk-nice-oled compatibility
-    # v0.3.0 includes pointing/Cirque support
+    # ZMK core - using mainline for split input/pointing support
+    # zmk-nice-oled docs say v0.3.0, but trying mainline for Cirque compatibility
     - name: zmk
       remote: zmkfirmware
-      revision: v0.3.0
+      revision: main
       import: app/west.yml
 
     # Helper macros
