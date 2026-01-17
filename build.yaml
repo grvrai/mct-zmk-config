@@ -13,7 +13,7 @@ include:
   # - Left (central): Display, receives Cirque via BLE split
   # - Right (peripheral): Cirque trackpad on I2C
   - board: nice_nano
-    shield: hillside_view_left_flip nice_view
+    shield: hillside_view_left_flip nice_view_adapter nice_epaper
     cmake-args: -DCONFIG_ZMK_STUDIO=y
     snippet: studio-rpc-usb-uart
     artifact-name: nice_hillside_view_left_flip

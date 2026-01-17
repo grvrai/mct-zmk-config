@@ -6,16 +6,24 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: mctechnology17
+      url-base: https://github.com/mctechnology17
   projects:
-    # ZMK core - official mainline with native pointing support
+    # ZMK core - pinned to v0.3.0 for zmk-nice-oled compatibility
+    # v0.3.0 includes pointing/Cirque support
     - name: zmk
       remote: zmkfirmware
-      revision: main
+      revision: v0.3.0
       import: app/west.yml
 
     # Helper macros
     - name: zmk-helpers
       remote: urob
+      revision: main
+
+    # Custom nice!view widgets with peripheral battery display
+    - name: zmk-nice-oled
+      remote: mctechnology17
       revision: main
   self:
     path: config
