@@ -6,11 +6,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
-    - name: mctechnology17
-      url-base: https://github.com/mctechnology17
   projects:
-    # ZMK core - using mainline for split input/pointing support
-    # zmk-nice-oled docs say v0.3.0, but trying mainline for Cirque compatibility
+    # ZMK core - official mainline with native pointing support
     - name: zmk
       remote: zmkfirmware
       revision: main
@@ -19,11 +16,6 @@ manifest:
     # Helper macros
     - name: zmk-helpers
       remote: urob
-      revision: main
-
-    # Custom nice!view widgets with peripheral battery display
-    - name: zmk-nice-oled
-      remote: mctechnology17
       revision: main
   self:
     path: config
