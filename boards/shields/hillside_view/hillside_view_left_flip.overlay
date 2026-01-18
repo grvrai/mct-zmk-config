@@ -13,7 +13,6 @@
 #include "hillside_view.dtsi"
 #include <dt-bindings/zmk/input_transform.h>
 #include <input/processors.dtsi>
-#include <behaviors/input_gestures.dtsi>
 
 &kscan0 {
     /* Same column order as original LEFT - flipping PCB doesn't change electrical routing */
@@ -46,8 +45,8 @@
     status = "okay";
 };
 
-/* Enable trackpad listener with Y-inversion and momentum for smooth cursor */
+/* Enable trackpad listener with Y-inversion for correct orientation */
 &glidepoint_listener {
     status = "okay";
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&ig_momentum>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
 };
