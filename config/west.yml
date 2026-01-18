@@ -6,6 +6,8 @@ manifest:
       url-base: https://github.com/zmkfirmware
     - name: urob
       url-base: https://github.com/urob
+    - name: halfdane
+      url-base: https://github.com/halfdane
   projects:
     # ZMK core - official mainline with native pointing support
     - name: zmk
@@ -16,6 +18,11 @@ manifest:
     # Helper macros
     - name: zmk-helpers
       remote: urob
+      revision: main
+
+    # Input gestures - momentum, circular scroll
+    - name: zmk-input-gestures
+      remote: halfdane
       revision: main
   self:
     path: config
