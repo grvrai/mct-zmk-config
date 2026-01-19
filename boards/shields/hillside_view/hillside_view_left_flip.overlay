@@ -49,4 +49,10 @@
 &glidepoint_listener {
     status = "okay";
     input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
+
+    /* Layer override: convert trackpad to scroll on SCROLL layer (7) */
+    scroll_layer {
+        layers = <7>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>;
+    };
 };
