@@ -45,10 +45,24 @@
     status = "okay";
 };
 
-/* Enable trackpad listener with Y-inversion for correct orientation */
+/* Trackpad sensitivity scaler - multiply movement by 2 */
+/ {
+    input_processors {
+        compatible = "zmk,input-processors";
+        zip_trackpad_scaler: zip_trackpad_scaler {
+            compatible = "zmk,input-processor-scaler";
+            #input-processor-cells = <2>;
+            type = <INPUT_EV_REL>;
+            codes = <INPUT_REL_X INPUT_REL_Y>;
+            track-remainders;
+        };
+    };
+};
+
+/* Enable trackpad listener with Y-inversion and 2x speed boost */
 &glidepoint_listener {
     status = "okay";
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 2 1>;
 
     /* Layer override: convert trackpad to scroll on SCROLL layer (7) */
     scroll_layer {
