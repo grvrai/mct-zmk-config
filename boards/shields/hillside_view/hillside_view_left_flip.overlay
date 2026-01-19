@@ -59,14 +59,14 @@
     };
 };
 
-/* Enable trackpad listener with Y-inversion and 2x speed boost */
+/* Enable trackpad listener with Y-inversion and 3x speed boost */
 &glidepoint_listener {
     status = "okay";
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 2 1>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 3 1>;
 
-    /* Layer override: convert trackpad to scroll on SCROLL layer (7) */
+    /* Layer override: convert trackpad to scroll on SCROLL layer (7) - slower scroll (1/2 speed) */
     scroll_layer {
         layers = <7>;
-        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_xy_to_scroll_mapper>;
+        input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 1 2>, <&zip_xy_to_scroll_mapper>;
     };
 };
