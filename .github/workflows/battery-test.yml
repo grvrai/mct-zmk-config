@@ -15,14 +15,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Initialize Zephyr workspace
+      - name: Initialize ZMK workspace
         run: |
-          west init -l test_adc
+          west init -l config
           west update
 
       - name: Build battery test
         run: |
-          west build -s test_adc -b nice_nano_v2 -- -DBOARD_ROOT=$(pwd)
+          west build -s test_adc -b nice_nano_v2 -- -DBOARD_ROOT=$(pwd)/zmk/app
 
       - name: Rename artifact
         run: cp build/zephyr/zephyr.uf2 battery_test_nice_nano_v2.uf2
