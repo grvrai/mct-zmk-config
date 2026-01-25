@@ -12,6 +12,9 @@
 <br>
 
 
+- [MY KEYBOARDS & BRANCHES](#MY-KEYBOARDS--BRANCHES)
+  - [Hillside View (46-key)](#hillside-view-46-key)
+  - [Cirque Branches](#cirque-branches)
 - [INTRO](#INTRO)
 - [QUICK START](#QUICK-START)
   - [keymap corne](#keymap-corne)
@@ -44,6 +47,60 @@ a modification to your keymap, you can do it with the online [ZMK-STUDIO](https:
 a modification to your keymap, you can do it with the online [keymap-editor](https://nickcoutsos.github.io/keymap-editor/).
 
 - If you already have a repository and you want only the dongle option of this repository with support for `zmk-studio`, just add this repository as a module to your configuration, look the section [THIS REPOSITORY AS A MODULE](#THIS-REPOSITORY-AS-A-MODULE).
+
+# MY KEYBOARDS & BRANCHES
+
+This is a fork of [mctechnology17/zmk-config](https://github.com/mctechnology17/zmk-config) customized for my keyboards. The main branch contains the original MC Technology configuration for Corne, Sofle, and Lily58. My custom Hillside View configurations live in separate branches.
+
+## Hillside View (46-key)
+
+My primary keyboard is the **Hillside View** - a 46-key split ergonomic keyboard with:
+- **nice!nano v2** controllers on both halves
+- **nice!view** ePaper displays
+- **Cirque 40mm trackpad** on the right side (I2C connection)
+- **Rotary encoder** on the left side
+- **Flipped MCU layout** (MCU on top, sockets underneath)
+- **Miryoku-inspired keymap** with urob's home row mods timing
+
+### Cirque Branches
+
+I maintain two branches for Cirque trackpad support with different ZMK backends:
+
+| Branch | ZMK Source | Description |
+|--------|-----------|-------------|
+| **`hsv-cirque`** | [zmkfirmware/zmk](https://github.com/zmkfirmware/zmk) (mainline) | Uses official ZMK with native pointing support. Simpler setup, recommended for most users. |
+| **`hillside-cirque`** | [badjeff/zmk](https://github.com/badjeff/zmk) (`feat/pointers-move-scroll`) | Uses badjeff's fork with enhanced pointing features, additional drivers (ADNS9800, PMW3610), and modules for input behavior listeners and peripheral relay. More experimental but offers additional features. |
+
+### Branch Feature Comparison
+
+| Feature | `hsv-cirque` (Mainline) | `hillside-cirque` (badjeff) |
+|---------|------------------------|----------------------------|
+| Cirque trackpad | Native support | Via cirque-input-module |
+| ZMK Studio | Yes | No (not compatible) |
+| Split trackpad relay | Built-in | Via zmk-split-peripheral-input-relay |
+| Scroll layer | Yes | Yes |
+| Additional sensor drivers | No | Yes (ADNS9800, PMW3610, analog) |
+| Input behavior listeners | No | Yes |
+| Stability | More stable (official) | Experimental |
+
+### Quick Start (Hillside View)
+
+```bash
+# Clone the repo
+git clone https://github.com/grvrai/mct-zmk-config.git
+cd mct-zmk-config
+
+# Checkout the cirque branch you want
+git checkout hsv-cirque      # Mainline ZMK (recommended)
+# OR
+git checkout hillside-cirque # badjeff's fork (experimental)
+
+# Push to trigger GitHub Actions build, then download firmware
+gh run download <run_id> -n artifact-nice_hillside_view_left_flip -D firmware/
+gh run download <run_id> -n artifact-nice_hillside_view_right_flip -D firmware/
+```
+
+---
 
 # INTRO
 
