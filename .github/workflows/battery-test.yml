@@ -1,0 +1,34 @@
+name: Build Battery Test Firmware
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'test_adc/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Initialize Zephyr workspace
+        run: |
+          west init -l test_adc
+          west update
+
+      - name: Build battery test
+        run: |
+          west build -s test_adc -b nice_nano_v2 -- -DBOARD_ROOT=$(pwd)
+
+      - name: Rename artifact
+        run: cp build/zephyr/zephyr.uf2 battery_test_nice_nano_v2.uf2
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: battery_test
+          path: battery_test_nice_nano_v2.uf2
