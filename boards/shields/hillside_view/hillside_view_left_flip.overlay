@@ -59,10 +59,10 @@
     };
 };
 
-/* Enable trackpad listener with Y-inversion and 3x speed boost */
+/* Enable trackpad listener with Y-inversion (bare 40mm Cirque, no overlay) */
 &glidepoint_listener {
     status = "okay";
-    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 3 1>;
+    input-processors = <&zip_xy_transform (INPUT_TRANSFORM_Y_INVERT)>, <&zip_trackpad_scaler 1 1>;
 
     /* Layer override: convert trackpad to scroll on SCROLL layer (7) - slower scroll (1/2 speed) */
     scroll_layer {
