@@ -19,6 +19,9 @@ manifest:
     # badjeff - cirque-input-module and split-peripheral-input-relay
     - name: badjeff
       url-base: https://github.com/badjeff
+    # dnlbauer - Corax56 keyboard shield
+    - name: dnlbauer
+      url-base: https://github.com/dnlbauer
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -62,6 +65,10 @@ manifest:
     # zmk-split-peripheral-input-relay - relay input from peripheral to central
     - name: zmk-split-peripheral-input-relay
       remote: badjeff
+      revision: main
+    # zmk-keyboards-corax - Corax56 keyboard shield definitions
+    - name: zmk-keyboards-corax
+      remote: dnlbauer
       revision: main
   self:
     path: config
