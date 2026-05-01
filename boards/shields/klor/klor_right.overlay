@@ -24,11 +24,4 @@
     status = "okay";
 };
 
-/* Right side uses 128x32 OLED */
-&oled {
-    height = <32>;
-    multiplex-ratio = <31>;
-    com-sequential;
-    segment-remap;
-    com-invdir;
-};
+/* Right side uses 128x64 OLED (same as left, default from klor_common.dtsi) */

@@ -53,7 +53,11 @@
         page-offset = <0>;
         display-offset = <0>;
         multiplex-ratio = <63>;
-        prechargep = <0x22>;
-        inversion-on;
+        /* Dimmer: shorter pre-charge phase = lower OLED brightness.
+         * Default 0x22 was too bright; 0x11 is noticeably dimmer.
+         * Try 0x33 if you actually want it brighter. */
+        prechargep = <0x11>;
+        /* inversion-on removed — reduces lit-pixel area dramatically,
+         * so the display reads dark-background instead of bright background. */
     };
 };
