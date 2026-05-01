@@ -2,4 +2,8 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@main
+    # Pinned to v0.3.0 to match the ZMK revision in config/west.yml.
+    # @main pulls the Zephyr 4.1 build action which requires
+    # ZMK_BOARD_COMPAT / new board-variant naming that v0.3.0 boards
+    # don't have — every build fails with "Missing ZMK Compat" + KeyError.
+    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.3.0

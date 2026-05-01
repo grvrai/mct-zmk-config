@@ -251,16 +251,18 @@ include:
 
   ### KLOR START ###
   # KLOR 42-key split keyboard with nice!nano v2
-  # Left + Right: 128x64 OLED with dongle_display (horizontal widgets)
-  # NOTE: nice_oled is for 128x32 vertical layout — do not use on a 128x64 panel,
-  # the widgets render rotated/sideways.
+  # Left:  128x64 OLED with dongle_display (full widgets — central side)
+  # Right: 128x64 OLED with stock ZMK status screen (peripheral)
+  # NOTE: dongle_display selects ZMK_WPM, which links against keycode events
+  # that don't exist on peripherals — that's why the right side cannot use it.
+  # NOTE: nice_oled is vertical 32x128 only — sideways on a 128x64 panel.
   - board: nice_nano_v2
     shield: klor_left dongle_display
     cmake-args: -DCONFIG_ZMK_KEYBOARD_NAME=\"Klor\" -DCONFIG_ZMK_STUDIO=y
     artifact-name: nice_klor_left_oled
     snippet: studio-rpc-usb-uart
   - board: nice_nano_v2
-    shield: klor_right dongle_display
+    shield: klor_right
     artifact-name: nice_klor_right_oled
   ### KLOR END ###
 
