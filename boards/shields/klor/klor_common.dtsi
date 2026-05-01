@@ -53,11 +53,11 @@
         page-offset = <0>;
         display-offset = <0>;
         multiplex-ratio = <63>;
-        /* Dimmer: shorter pre-charge phase = lower OLED brightness.
-         * Default 0x22 was too bright; 0x11 is noticeably dimmer.
-         * Try 0x33 if you actually want it brighter. */
-        prechargep = <0x11>;
-        /* inversion-on removed — reduces lit-pixel area dramatically,
-         * so the display reads dark-background instead of bright background. */
+        prechargep = <0x22>;
+        /* Keep colors normal (white background like before).
+         * Brightness is controlled via CONFIG_SSD1306_DEFAULT_CONTRAST in
+         * config/klor.conf — that's the proper register-level dim knob,
+         * not pixel inversion. */
+        inversion-on;
     };
 };
