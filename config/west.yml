@@ -47,10 +47,10 @@ manifest:
     - name: zmk-helpers
       remote: urob
       revision: main
-    # zmk-auto-layer - numword behavior (disabled - incompatible with newer ZMK)
-    # - name: zmk-auto-layer
-    #   remote: urob
-    #   revision: v0.3.0
+    # zmk-auto-layer - numword behavior (klor.keymap uses &num_word)
+    - name: zmk-auto-layer
+      remote: urob
+      revision: v0.3.0
     # zmk-tri-state - tri-state behavior for app switcher
     - name: zmk-tri-state
       remote: urob
